@@ -19,153 +19,194 @@
 
 %\section{Introducción}
 
-%----------------------------------------------------------------------------------------
-\section{Aprendiendo \LaTeX{}}
-
-\LaTeX{} no es \textsc{WYSIWYG} (What You See is What You Get), a diferencia de los procesadores de texto como Microsoft Word o Pages de Apple o incluso LibreOffice en el mundo open-source. En lugar de ello, un documento escrito para \LaTeX{} es en realidad un archivo de texto simple o llano que \emph{no contiene formato} . Nosotros le decimos a \LaTeX{} cómo deseamos que se aplique el formato en el documento final escribiendo comandos simples entre el texto, por ejemplo, si quiero usar texto en itálicas para dar énfasis, escribo \verb|\it{texto}| y pongo el texto que quiero en itálicas entre medio de las llaves. Esto significa que \LaTeX{} es un lenguaje del tipo \enquote{mark-up}, muy parecido a HTML.
-
-\subsection{Una introducción (no tan corta) a \LaTeX{}}
-
-Si sos nuevo en \LaTeX{}, hay un muy buen libro electrónico - disponible gratuitamente en Internet como un archivo PDF - llamado, \enquote{A (not so short) Introduction to \LaTeX{}}. El título del libro es generalmente acortado a simplemente \emph{lshort}. Puede descargar la versión más reciente en inglés (ya que se actualiza de vez en cuando) desde aquí:
-\url{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}
-
-Se puede encontrar la versión en español en la lista en esta página: \url{http://www.ctan.org/tex-archive/info/lshort/}
-
-\subsubsection{Una subsubsección}
-
-Acá tiene un ejemplo de una ``subsubsección'' que es el cuarto nivel de ordenamiento del texto, después de capítulo, sección y subsección.  Como se puede ver, las subsubsecciones no van numeradas en el cuerpo del documento ni en el índice.  El formato está definido por la plantilla y no debe ser modificado.
-
-\subsection{Guía matemática rápida para \LaTeX{}}
-
-Si estás escribiendo un documento con mucho contenido matemático, entonces es posible que desees leer el documento de la AMS (American Mathematical Society) llamado, \enquote{A Short Math Guide for \LaTeX{}}. Se puede encontrar en línea en el siguiente link: \url{http://www.ams.org/tex/amslatex.html} en la sección \enquote{Additional Documentation} hacia la parte inferior de la página.
-
+Este capítulo presenta una introducción a los conceptos básicos de la temática del trabajo y explica las principales causas que motivaron el desarrollo del proyecto, junto con los objetivos que se buscaron alcanzar.
 
 %----------------------------------------------------------------------------------------
+\section{Planteo básico}
 
-\section{Utilizando esta plantilla}
-
-Si estás familiarizado con \LaTeX{}, entonces podés explorar la estructura de directorios de esta plantilla y proceder a personalizarla agregando tu información en el bloque \emph{INFORMACIÓN DE LA PORTADA} en el archivo \file{memoria.tex}.  
-
-Se puede continuar luego modificando el resto de los archivos siguiendo los lineamientos que se describen en la sección \ref{sec:FillingFile} en la página \pageref{sec:FillingFile}.
-
-Debés asegurarte de leer el capítulo \ref{Chapter2} acerca de las convenciones utilizadas para las Memoria de los Trabajos Finales de la \degreename.
-
-Si sos nuevo en \LaTeX{}, se recomienda que continúes leyendo el documento ya que contiene información básica para aprovechar el potencial de esta herramienta.
-
-
-%----------------------------------------------------------------------------------------
-
-\section{Qué incluye esta plantilla}
-
-\subsection{Carpetas}
-
-Esta plantilla se distribuye como una único archivo .zip que se puede descomprimir en varios archivos y carpetas. Asimismo, se puede consultar el repositorio git para obtener la última versión de los archivos, \url{https://github.com/patriciobos/Plantilla-CESE.git}. Los nombres de las carpetas son, o pretender ser, auto-explicativos.
-
-\keyword{Appendices} -- Esta es la carpeta donde se deben poner los apéndices. Cada apéndice debe ir en su propio archivo \file{.tex}. Se incluye un ejemplo y una plantilla en la carpeta.
-
-\keyword{Chapters} -- Esta es la carpeta donde se deben poner los capítulos de la memoria. Cada capítulo debe ir un su propio archivo \file{.tex} por separado.  Se ofrece por defecto, la siguiente estructura de capítulos y se recomienda su utilización dentro de lo posible:
-
-\begin{itemize}
-\item Capítulo 1: Introducción general	
-\item Capítulo 2: Introducción específica
-\item Capítulo 3: Diseño e implementación
-\item Capítulo 4: Ensayos y resultados
-\item Capítulo 5: Conclusiones
-
-\end{itemize}
-
-Esta estructura de capítulos es la que se recomienda para las memorias de la especialización.
-
-\keyword{Figures} -- Esta carpeta contiene todas las figuras de la memoria.  Estas son las versiones finales de las imágenes que van a ser incluidas en la memoria.  Pueden ser imágenes en formato \textit{raster}\footnote{\url{https://en.wikipedia.org/wiki/Raster_graphics}} como \file{.png}, \file{.jpg} o en formato vectoriales\footnote{\url{https://en.wikipedia.org/wiki/Vector_graphics}} como \file{.pdf}, \file{.ps}.  Se debe notar que utilizar imágenes vectoriales disminuye notablemente el peso del documento final y acelera el tiempo de compilación por lo que es recomendable su utilización siempre que sea posible.
-
-\subsection{Archivos}
-
-También están incluidos varios archivos, la mayoría de ellos son de texto plano y se puede ver su contenido en un editor de texto. Después de la compilación inicial, se verá que más archivos auxiliares son creados por \ LaTeX{} o BibTeX, pero son de uso interno y no es necesario hacer nada en particular con ellos.  Toda la información necesaria para compilar el documento se encuentra en los archivos \file{.tex}, \file{.bib}, \file{.cls} y en las imágenes de la carpeta Figures.
-
-\keyword{referencias.bib} - este es un archivo importante que contiene toda la información de referencias bibliográficas que se utilizarán para las citas en la memoria en conjunto con BibTeX. Usted puede escribir las entradas bibliográficas en forma manual, aunque existen también programas de gestión de referencias que facilitan la creación y gestión de las referencias y permiten exportarlas en formato BibTeX.  También hay disponibles sitios web como \url{books.google.com} que permiten obtener toda la información necesaria para una cita en formato BibTeX. Ver sección \ref{sec:biblio}
-
-\keyword{MastersDoctoralThesis.cls} -- este es un archivo importante. Es el archivos con la clase que le informa a \LaTeX{} cómo debe dar formato a la memoria. El usuario de la plantilla no debería necesitar modificar nada de este archivo.
-
-\keyword{memoria.pdf} -- esta es su memoria con una tipografía bellamente compuesta (en formato de archivo PDF) creado por \LaTeX{}. Se distribuye con la plantilla y después de compilar por primera vez sin hacer ningún cambio se debería obtener una versión idéntica a este documento.
-
-\keyword{memoria.tex} -- este es un archivo importante. Este es el archivo que tiene que compilar \LaTeX{} para producir la memoria como un archivo PDF. Contiene un marco de trabajo y estructuras que le indican a \LaTeX{} cómo diagramar la memoria.  Está altamente comentado para que se pueda entender qué es lo que realiza cada línea de código y por qué está incluida en ese lugar.  En este archivo se debe completar la información personalizada de las primeras sección según se indica en la sección \ref{sec:FillingFile}.
-
-Archivos que \emph{no} forman parte de la distribución de la plantilla pero que son generados por \LaTeX{} como archivos auxiliares necesarios para la producción de la memoria.pdf son:
-
-\keyword{memoria.aux} -- este es un archivo auxiliar generado por \LaTeX{}, si se borra \LaTeX{} simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}.
-
-\keyword{memoria.bbl} -- este es un archivo auxiliar generado por BibTeX, si se borra BibTeX simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}. Mientras que el archivo \file{.bib} contiene todas las referencias que hay, este archivo \file{.bbl} contine sólo las referencias que han sido citadas y se utiliza para la construcción de la bibiografía.
-
-\keyword{memoria.blg} -- este es un archivo auxiliar generado por BibTeX, si se borra BibTeX simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}.
-
-\keyword{memoria.lof} -- este es un archivo auxiliar generado por \LaTeX{}, si se borra \LaTeX{} simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}.  Le indica a \LaTeX{} cómo construir la sección \emph{Lista de Figuras}.
- 
-\keyword{memoria.log} --  este es un archivo auxiliar generado por \LaTeX{}, si se borra \LaTeX{} simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}. Contiene mensajes de \LaTeX{}. Si se reciben errores o advertencias durante la compilación, se guardan en este archivo \file{.log}.
-
-\keyword{memoria.lot} -- este es un archivo auxiliar generado por \LaTeX{}, si se borra \LaTeX{} simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}.  Le indica a \LaTeX{} cómo construir la sección \emph{Lista de Tablas}.
-
-\keyword{memoria.out} -- este es un archivo auxiliar generado por \LaTeX{}, si se borra \LaTeX{} simplemente lo regenera cuando se compila el archivo principal \file{memoria.tex}.
-
-De esta larga lista de archivos, sólo aquellos con la extensión \file{.bib}, \file{.cls} y \file{.tex} son importantes.  Los otros archivos auxiliares pueden ser ignorados o borrados ya que \LaTeX{} y BibTeX los regenerarán durante la compilación.
-
-%----------------------------------------------------------------------------------------
-
-\section{Entorno de trabajo}
-
-Ante de comenzar a editar la plantilla debemos tener un editor \LaTeX{} instalado en nuestra computadora.  En forma análoga a lo que sucede en lenguaje C, que se puede crear y editar código con casi cualquier editor, existen ciertos entornos de trabajo que nos pueden simplificar mucho la tarea.  En este sentido, se recomienda, sobre todo para los principiantes en \LaTeX{} la utilización de TexMaker, un programa gratuito y multi-plantaforma que está disponible tanto para windows como para sistemas GNU/linux.
-
-La versión más reciente de TexMaker es la 4.5 y se puede descargar del siguiente link: \url{http://www.xm1math.net/texmaker/download.html}. Se puede consultar el manual de usuario en el siguiente link: \url{http://www.xm1math.net/texmaker/doc.html}.
- 
-
-\subsection{Paquetes adicionales}
-
-Si bien durante el proceso de instalación de TexMaker, o cualquier otro editor que se haya elegido, se instalarán en el sistema los paquetes básicos necesarios para trabajar con \LaTeX{}, la plantilla de los trabajos de Especialización y Maestría requieren de paquete adicionales.
-
-Se indican a continuación los comandos que se deben introducir en la consola de Ubuntu (ctrl + alt + t) para instalarlos:
-
-\begin{lstlisting}[language=bash]
-  $ sudo apt install texlive-lang-spanish texlive-science 
-  $ sudo apt install texlive-bibtex-extra biber
-  $ sudo apt install texlive texlive-fonts-recommended
-  $ sudo apt install texlive-latex-extra
-\end{lstlisting}
-
-
-\subsection{Configurando TexMaker}
-\label{subsec:configurando}
-
-
-
-Una vez instalado el programa y los paquetes adicionales se debe abrir el archivo memoria.tex con el editor para ver una pantalla similar a la que se puede apreciar en la figura \ref{fig:texmaker}. 
-Una vez instalado el programa y los paquetes adicionales se debe abrir el archivo memoria.tex con el editor para ver una pantalla similar a la que se puede apreciar en la figura \ref{fig:texmaker}. 
-Una vez instalado el programa y los paquetes adicionales se debe abrir el archivo memoria.tex con el editor para ver una pantalla similar a la que se puede apreciar en la figura \ref{fig:texmaker}. 
-Una vez instalado el programa y los paquetes adicionales se debe abrir el archivo memoria.tex con el editor para ver una pantalla similar a la que se puede apreciar en la figura \ref{fig:texmaker}. 
-
-\vspace{1cm}
+Existen en la actualidad diferentes soluciones en lo que respecta a la prevención o seguridad ciudadana \citep{PNUD:1}. Estos sistemas centralizan información en tiempo real de cámaras de seguridad, móviles de las fuerzas de seguridad, entre otros. Además, suelen incorporar alguna funcionalidad para que un ciudadano, ante una situación de emergencia, pueda dar aviso a las autoridades. El mecanismo para notificar puede ser una aplicación móvil, un dispositivo geolocalizador u otra alternativa pero el objetivo es el mismo.
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=.5\textwidth]{./Figures/texmaker.png}
-	\caption{Entorno de trabajo de texMaker.}
+	\includegraphics[width=.9\textwidth]{./Figures/diagBloques.png}
+	\caption{Diagrama en bloques del dispositivo y el sistema web}
 	\label{fig:texmaker}
 \end{figure}
 
-\vspace{1cm}
+\subsection{Botones antipánico}
 
-Notar que existe una vista llamada Estructura a la izquierda de la interfaz que nos permite abrir desde dentro del programa los archivos individuales de los capítulos.  A la derecha se encuentra una vista con el archivo propiamente dicho para su edición. Hacia la parte inferior se encuentra una vista del log con información de los resultados de la compilación.  En esta última vista pueden aparecen advertencias o \textit{warning}, que normalmente pueden ser ignorados, y los errores que se indican en color rojo y deben resolverse para que se genere el PDF de salida.
+Un botón antipánico hace referencia a un dispositivo pequeño y portátil, con una batería, que permite que una persona ante una situación de emergencia, presione el dispositivo para generar una alerta y esta sea recepcionada en un sistema de monitoreo.
 
-Recordar que el archivo que se debe compilar con PDFLaTeX es \file{memoria.tex}, si se tratara de compilar alguno de los capítulos saldría un error.  Para salvar la molestia de tener que cambiar de archivo para compilar cada vez que se realice una modificación en un capítulo, se puede definir el archivo \file{memoria.tex} como ``documento maestro'' yendo al menú opciones -> ``definir documento actual como documento maestro'', lo que permite compilar con PDFLaTeX memoria.tex directamente desde cualquier archivo que se esté modificando . Se muestra esta opción en la figura \ref{fig:docMaestro}.
+Estos dispositivos generalmente son brindados por las autoridades, o también pueden ser brindados por empresas de seguridad privadas. Sus beneficiarios suelen ser:
+\begin{itemize}
+\item Personas en situación de violencia de género.	
+\item Personas en situación de violencia intrafamiliar.
+\item Establecimientos donde pueden ocurrir situaciones de violencia y es necesario dar rápidamente aviso a las autoridades.
+\item Agente o sereno cuyo recorrido debe ser registrado.
+\item Entre otros.
+\end{itemize}
 
-\begin{figure}[h]
+Entre sus funcionalidades, suelen poseer:
+\begin{itemize}
+\item Conectividad a la red de telefonía móvil (\textit{Global System for Mobile communications} o GSM).
+\item Acceso a datos móviles (\textit{General Packet Radio Service} o GPRS).
+\item Conectividad a sistemas de geoposicionamiento satelital (\textit{Global Navigation Satellite System} o GNSS).
+\item Botón de disparo de alerta.
+\item Reporte periódico de ubicación por mensaje de texto (SMS) o vía web.
+\end{itemize}
+
+Un detalle interesante respecto a estos dispositivos es que generalmente se comercializan en dos formatos:
+
+\begin{itemize}
+\item Dispositivo personal: dispositivo embebido que puede ser llevado como colgante, en la muñeca o en el bolsillo. Tiene una autonomía limitada.
+\item Dispositivo para móviles: también conocido como AVL o \textit{Automatic Vehicle Location}; además de contar con antenas externas para mayor precisión, cuenta con cables para conexión a la batería de los vehículos, permitiendo tener una mayor autonomía.
+\end{itemize}
+
+
+En relación a este trabajo, se planteó el desarrollo del prototipo de un botón geolocalizador y una plataforma web a modo de prueba de concepto, para la recepción de alertas.
+
+%----------------------------------------------------------------------------------------
+
+\section{Motivación}
+
+El autor del trabajo ha trabajado anteriormente con este tipo de soluciones, principalmente en la adquisición, configuración, implementación y soporte de botones antipánico disponibles en el mercado. Se detectó y se llegó a la conclusión, respecto a los dispositivos, de que estos presentan los siguientes inconvenientes:
+
+\begin{itemize}
+\item Especificaciones de hardware obsoletas.
+\item Documentación escasa, desactualizada o incluso incorrecta en algunos casos.
+\item Poca fiabilidad de dispositivo (dificultad para configurarlos, mala señal en ambientes \textit{indoor}, desconfianza al momento de utilizarlo).
+\item Inconsistencias entre dispositivos idénticos.
+\item Poca duración de batería (desde aproximadamente 24 horas hasta 3 o 4 días como máximo, cuando lo deseable para el beneficiario final del botón es de al menos 5 o 6 días).
+\item Precio exageradamente elevado y muchas dificultades para adquirirlos mediante proveedores, más en períodos de alta inflación.
+\item Nulas características de seguridad.
+\end{itemize}
+
+Se investigaron y revisaron diferentes alternativas en el mercado, así como también se trabajó con dispositivos utilizados por sistemas de la competencia, llegando a conclusiones similares: no se encuentran dispositivos aceptables cuyo costo sea accesible.
+
+Todas estas cuestiones nombradas anteriormente son las que motivaron la formulación del proyecto, siendo necesario disponer de mínimamente un dispositivo embebido con un conjunto de funcionalidades definidas, y un sistema web que permita recepcionar la información del botón.
+
+Otras motivaciones menores del trabajo, pero igualmente muy relacionadas a la especialización, fueron:
+\begin{itemize}
+\item Profundizar en el uso de frameworks para \textit{Single Web Applications} o SPAs.
+\item Poder aplicar los conocimientos trabajados en relación a tecnologías \textit{cloud} y desarrollo de APIs web.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\section{Objetivos y alcance}
+
+En relación a los objetivos de alto nivel del trabajo, estos fueron:
+\begin{itemize}
+\item Investigación y determinación de un conjunto de módulos de hardware que sean adecuados para la construcción del prototipo.
+\item Diseño y construcción un prototipo de botón antipánico que permita validar las decisiones tecnológicas.
+\item Tener fiabilidad superior sobre ciertas características, en comparación con algunos de los dispositivos disponibles en el mercado.
+\item Desarrollo de un sistema web a modo de prueba de concepto para el uso del dispositivo.
+\end{itemize}
+
+Respecto a los objetivos por componente, estos fueron:
+
+\begin{table}[h]
 	\centering
-	\includegraphics[width=\textwidth]{./Figures/docMaestro.png}
-	\caption{Definir memoria.tex como documento maestro.}
-	\label{fig:docMaestro}
+	\caption[Resumen de objetivos]{Resumen de objetivos del trabajo}
+	\begin{tabular}{l c c}    
+		\toprule
+		\textbf{Componente} 	 & \textbf{Objetivo} 	  \\
+		\midrule
+		Prototipo & Duración de la batería 				\\		
+		Prototipo & Calidad de señal de GSM en ambientes cerrados y abiertos			\\
+		Prototipo & Calidad de señal de GNSS en ambientes cerrados y abiertos			\\
+		Prototipo & Tiempo de actualización de la ubicación (\textit{time-to-first-fix}) \\
+		Prototipo & Envío de alertas mediante pulsador		\\
+		Sistema web & Recepción de SMS de alertas			\\
+		Sistema web & Alta de dispositivos			\\
+		Sistema web & Visualización de alertas en tiempo real			\\
+		Sistema web & Despliegue en un entorno \textit{cloud}			\\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:peces}
+\end{table}
+
+No se incluyeron dentro del alcance del trabajo, las siguientes características:
+
+\begin{itemize}
+\item Aplicación web productiva para gestionar las activaciones del botón antipánico. Por productiva se refiere a que pueda ser ofrecida al mercado o utilizable por usuarios encargados del monitoreo.
+\item Desarrollo de un dispositivo listo para reemplazar dispositivos existentes, es decir que no sea un prototipo.
+\item Desarrollo de un contenedor físico para el dispositivo.
+\end{itemize}
+
+Además, durante el desarrollo del trabajo, se fueron detectando diferentes cuestiones técnicas a resolver, que modificaron algunos objetivos planteados inicialmente.
+
+%----------------------------------------------------------------------------------------
+
+\section{Soluciones comerciales similares}
+
+Retomando los inconvenientes de soluciones actuales, se presentan a continuación algunos modelos conocidos y utilizados en el mercado local. Estos dos modelos sufren los inconvenientes nombrados en las secciones anteriores: el motivo de fondo es que existen muchos clones de estos modelos, resultando muy difícil determinar si se está trabajando con un dispositivo original o un clon con posibles problemas \citep{CLONES:1}.
+\subsection{LK109}
+
+LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Existe también una versión que trabaja con redes 3G, cuyo costo es superior. Entre sus características más interesantes se encuentran \citep{LK109MANUAL:1}:
+\begin{itemize}
+\item Indicadores de estado: batería, señal de GPS y señal de GSM.
+\item Posibilidad de reportar la ubicación mediante TCP o SMS.
+\item Reporte de ubicación en tiempo real, con una perioricidad configurable.
+\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un parlante.
+\item Autonomía de 240 horas o 10 días.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{./Figures/lk109.jpg}
+	\caption{Imagen del botón LK109}
+	\label{fig:texmaker}
 \end{figure}
 
-En el menú herramientas se encuentran las opciones de compilación.  Para producir un archivo PDF a partir de un archivo .tex se debe ejecutar PDFLaTeX (el shortcut es F6). Para incorporar nueva bibliografía se debe utilizar la opción BibTeX del mismo menú herramientas (el shortcut es F11).
+\subsection{TK102B}
 
-Notar que para actualizar las tablas de contenidos se debe ejecutar PDFLaTeX dos veces.  Esto se debe a que es necesario actualizar algunos archivos auxiliares antes de obtener el resultado final.  En forma similar, para actualizar las referencias bibliográficas se debe ejecutar primero PDFLaTeX, después BibTeX y finalmente PDFLaTeX dos veces por idénticos motivos.
+TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Entre sus características más relevantes se encuentran \citep{TK102BMANUAL:1}:
+\begin{itemize}
+\item Indicadores de estado: batería, señal de GPS y señal de GSM.
+\item Posibilidad de reportar la ubicación mediante TCP o SMS, incluyendo la dirección aproximada, mediante geodecodificación inversa.
+\item Reporte de ubicación en tiempo real, con una periodicidad configurable.
+\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un parlante.
+\item Autonomía de 80 horas o 3 días aproximadamente.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{./Figures/tk102b.jpg}
+	\caption{Imagen del botón TK102B}
+	\label{fig:texmaker}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\caption[Tabla comparativa]{Tabla comparativa de los dos modelos}
+	\begin{tabular}{l c c}    
+		\toprule
+		\textbf{Característica} 	 & \textbf{LK109} & \textbf{TK102B}	  \\
+		\midrule
+		Conectividad & GSM, GPRS, SMS & 	GSM, GPRS, SMS			\\		
+		Reporte periódico & Si & Si			\\
+		Autonomía (horas) & 240 & 80		\\
+		Indicadores de estado & Si & Si \\
+		Escucha remota & Si & Si \\
+		Protocolo de comunicación & h02 & gps103 \\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:peces}
+\end{table}
+
+Respecto al ítem de autonomía, no se ha podido comprobar en la práctica que la duración sea la indicada (siempre es mucho menor, entre 12 y 24 horas), a excepción del uso mediante \textit{sleep} o ahorro de batería, que no tiene utilidad para las aplicaciones de seguimiento de una persona. Esto es debido a que en el modo de ahorro de batería, la ubicación se actualiza posterior al envío de una alerta y no antes, resultando ínutil la ubicación reportada.
+
+En relación al ítem de escucha remota, es decir la posibilidad de escuchar lo que ocurre alrededor del dispositivo, no se ha podido verificar para varios dispositivos; de todas maneras no resulta, al menos para los casos de uso reales, una funcionalidad atractiva. Las funcionalidades que se deben cumplir y validar a rajatabla son:
+\begin{itemize}
+	\item Precisión al momento de obtener la ubicación.
+	\item Autonomía considerable de la batería.
+	\item Rapidez para obtener señal de GSM y GNSS.
+\end{itemize}
+
+Por este motivo, es que no se intentó entre los objetivos iniciales ir más allá de las características iniciales.
 
 \section{Personalizando la plantilla, el archivo \file{memoria.tex}}
 \label{sec:FillingFile}
@@ -272,16 +313,7 @@ En el archivo \file{reference.bib} se encuentran las referencias bibliográficas
 \end{lstlisting}
 
 
-\begin{lstlisting}
-@MISC{WEBSITE:1,
-    HOWPUBLISHED = "\url{http://example.com}",
-    AUTHOR = "Intel",
-    TITLE = "Example Website",
-    MONTH = "12",
-    YEAR = "1988",
-    URLDATE = {2012-11-26}
-}
-\end{lstlisting}
+
 
 Se debe notar que los nombres \emph{ARTICLE:1}, \emph{BOOK:1}, \emph{BOOK:2} y \emph{WEBSITE:1} son nombres de fantasía que le sirve al autor del documento para identificar la entrada. En este sentido, se podrían reemplazar por cualquier otro nombre.  Tampoco es necesario poner : seguido de un número, en los ejemplos sólo se incluye como un posible estilo para identificar las entradas.
 
