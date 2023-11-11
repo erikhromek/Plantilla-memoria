@@ -1,202 +1,268 @@
 \chapter{Introducción específica} % Main chapter title
 
 \label{Chapter2}
-
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-Todos los capítulos deben comenzar con un breve párrafo introductorio que indique cuál es el contenido que se encontrará al leerlo.  La redacción sobre el contenido de la memoria debe hacerse en presente y todo lo referido al proyecto en pasado, siempre de modo impersonal.
+En este capítulo se hace una presentación de cuestiones técnicas particulares del trabajo, una descripción de alto nivel de las tecnologías involucradas en el desarrollo del trabajo, las herramientas que se utilizaron y servicios externos que formaron parte de la elaboración del trabajo, así también como los componentes de hardware empleados.
 
-\section{Estilo y convenciones}
-\label{sec:ejemplo}
+\section{Características de las soluciones existentes}
 
-\subsection{Uso de mayúscula inicial para los título de secciones}
+Es necesario, en primer lugar, hacer una introducción de las características que deben tener las soluciones de este tipo, junto con sus limitaciones y particularidades técnicas. Cualquier desarrollo de este tipo, debe considerarlas siguientes características para los módulos de hardware y software.
 
-Si en el texto se hace alusión a diferentes partes del trabajo referirse a ellas como capítulo, sección o subsección según corresponda. Por ejemplo: ``En el capítulo \ref{Chapter1} se explica tal cosa'', o ``En la sección \ref{sec:ejemplo} se presenta lo que sea'', o ``En la subsección \ref{subsec:ejemplo} se discute otra cosa''.
+\subsection{Características del hardware}
 
-Cuando se quiere poner una lista tabulada, se hace así:
-
+Los botones antipánico y dispositivos geolocalizadores, suelen ser utilizados en zonas donde la cobertura de telefonía móvil es muy baja. Es decir, se cuenta con conectividad limitada para llamadas y mensajes, y prácticamente no hay cobertura para datos móviles, o es de baja tasa de transferencia. La tecnología más presente es la de GPRS o 2G\citep{NPERF:1}, ya que es la red de mayor alcance, pero también la de menor ancho de banda.
+Esto impone una restricción respecto a la conectividad, por este motivo la mayoría de los dispositivos tienen las siguientes características respecto al método de comunicación:
 \begin{itemize}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
+	\item Comunicación vía SMS, TCP o UDP para configuración y envío de datos.
+	\item Comunicación vía protocolos personalizados\footnote{Existe una cantidad muy diversa de protocolos, desde protocolos binarios hasta protocolos en formato texto; puede consultarse el \href{https://www.traccar.org/protocols/}{listado de protocolos} que incorpora la plataforma \textit{open source} Traccar al respecto.} para reducir el \textit{overhead} de datos.
+	\item Mecanismos para almacenar datos en caso de perder conectividad.
 \end{itemize}
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
+Debido a que dentro del alcance del trabajo se apunta a configuración y envío de mensajes de alerta, se consideró innecesario, para estas funciones, requerir otro medio adicional. No se considera apropiado usar un método de comunicación que pueda no ser fiable, como lo son los datos móviles en zonas donde la conectividad es baja.
 
-Si se desea poner una lista numerada el formato es este:
+Por otra parte, otro punto importante respecto a estos dispositivos, es su capacidad de obtener señal aceptable tanto de GSM como GNSS en ambientes \textit{indoor} y \textit{outdoor}. Prácticamente todos los botones antipánico poseen antenas internas y sin alimentación activa, por lo que su capacidad para adquirir un nivel de señal aceptable es limitada; esto introduce varios puntos a favor y en contra:
+\begin{itemize}
+	\item No generan un consumo de energía adicional.
+	\item Su tiempo de \textit{startup}, es decir, hasta que adquieren un nivel de señal operativo aceptable, es elevado si están en ambientes cerrados.
+	\item Su precisión suele ser baja en ambientes cerrados, lo cual puede ser un problema en situaciones de emergencia.
+	\item El tiempo de actualización de la posición de la persona puede ser elevado si la antena no logra captar una buena señal.
+\end{itemize}
 
-\begin{enumerate}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
-\end{enumerate}
+\subsection{Características de los sistemas web}
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
+Un sistema web, al requerir estar en comunicación con un dispositivo y mostrar su información en tiempo real, debe contar con las siguientes características, idealmente:
+\begin{itemize}
+	\item No requerir ningún software adicional para su acceso y uso más allá de un navegador web y conexión a Internet.
+	\item Poder recibir mensajes de texto, es decir, tener un número telefónico virtual asociado.
+	\item Enviar actualizaciones \textit{push} al navegador del usuario en tiempo real.
+\end{itemize}
 
-\subsection{Este es el título de una subsección}
-\label{subsec:ejemplo}
+Se presentan algunos desafíos respecto al segundo y tercer punto. Para la recepción de SMS, es necesario tener integrada una central de telefonía virtual o implementar un \textit{Short Message Service Center} o SMSC, un servicio específico para el ruteo de mensajes de texto desde y hacia la web. Respecto al tercer punto, resulta obligatoria la implementación de algún mecanismo de actualización en tiempo real desde el servidor hacia el cliente, el navegador web, y no al revés, com puede ser \textit{WebSocket}.
 
-Se recomienda no utilizar \textbf{texto en negritas} en ningún párrafo, ni tampoco texto \underline{subrayado}. En cambio sí se debe utilizar \textit{texto en itálicas} para palabras en un idioma extranjero, al menos la primera vez que aparecen en el texto. En el caso de palabras que estamos inventando se deben utilizar ``comillas'', así como también para citas textuales. Por ejemplo, un \textit{digital filter} es una especie de ``selector'' que permite separar ciertos componentes armónicos en particular.
+En algunos casos, también debería permitir comunicación bidireccional con los dispositivos, para que un operador pueda configurarlos \textit{on-demand}. De todas maneras, debido a que está fuera del alcance del trabajo, no se planteó el desarrolo de esta característica.
 
-La escritura debe ser impersonal. Por ejemplo, no utilizar ``el diseño del firmware lo hice de acuerdo con tal principio'', sino ``el firmware fue diseñado utilizando tal principio''. 
+\section{Componentes de hardware utilizados}
 
-El trabajo es algo que al momento de escribir la memoria se supone que ya está concluido, entonces todo lo que se refiera a hacer el trabajo se narra en tiempo pasado, porque es algo que ya ocurrió. Por ejemplo, "se diseñó el firmware empleando la técnica de test driven development".
+\subsection{Microcontrolador ESP32}
 
-En cambio, la memoria es algo que está vivo cada vez que el lector la lee. Por eso transcurre siempre en tiempo presente, como por ejemplo:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{./Figures/esp32s.png}
+	\caption{Microcontrolador ESP32-S}
+	\label{fig:texmaker}
+\end{figure}
 
-``En el presente capítulo se da una visión global sobre las distintas pruebas realizadas y los resultados obtenidos. Se explica el modo en que fueron llevados a cabo los test unitarios y las pruebas del sistema''.
+Se utilizó un SoC (\textit{System on a Chip}) de la familia ESP32 de Espressif debido a que resulta una opción ideal para el desarrollo de sistemas embebidos y aplicaciones de Internet de las Cosas. Entre las características que resultaron más atractivas para su elección fueron\citep{ESP32:1}:
+\begin{itemize}
+	\item Bajo costo y disponibilidad en el mercado local.
+	\item Prestaciones muy interesantes: Wi-Fi, Bluetooth, modos de ahorro de energía, varios periféricos, entre otros.
+	\item Gran soporte de la comunidad y disponibilidad de bibliotecas, junto a su documentación.
+	\item Ya utilizado en la carrera de especialización.
+\end{itemize}
 
-Se recomienda no utilizar una sección de glosario sino colocar la descripción de las abreviaturas como parte del mismo cuerpo del texto. Por ejemplo, RTOS (\textit{Real Time Operating System}, Sistema Operativo de Tiempo Real) o en caso de considerarlo apropiado mediante notas a pie de página.
+Se presenta a continuación algunas alternativas comparadas\footnote{La comparación debe ser interpretada linealmente ya que hay placas como Ai Thinker A9G y TTGO T-Call V1.3 que poseen ya módulos integrados, pero todos fueron analizados para el trabajo.}
 
-Si se desea indicar alguna página web utilizar el siguiente formato de referencias bibliográficas, dónde las referencias se detallan en la sección de bibliografía de la memoria, utilizado el formato establecido por IEEE en \citep{IEEE:citation}. Por ejemplo, ``el presente trabajo se basa en la plataforma EDU-CIAA-NXP \citep{CIAA}, la cual...''.
+\begin{table}[h]
+	\centering
+	\caption[Tabla comparativa]{Tabla comparativa de placas de desarrollo}
+	\begin{tabular}{l c c c c}    
+		\toprule
+		\textbf{Característica} 	 & \textbf{ESP32} & \textbf{A9G} & \textbf{LoPy 4} & \textbf{TTGO T-Call}  \\
+		\midrule
+		Disponibilidad & Baja & No & No & Baja			\\		
+		Comunidad & Muy grande & Grande & Poca & Si			\\
+		Costo & Muy bajo & Moderado & Muy elevado & Muy elevado		\\
+		Curva aprendizaje & Muy baja & Alta & Baja & Baja \\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:peces}
+\end{table}
 
-\subsection{Figuras} 
 
-Al insertar figuras en la memoria se deben considerar determinadas pautas. Para empezar, usar siempre tipografía claramente legible. Luego, tener claro que \textbf{es incorrecto} escribir por ejemplo esto: ``El diseño elegido es un cuadrado, como se ve en la siguiente figura:''
+\subsection{Módulo GPS NEO-6M}
 
-\begin{figure}[h]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{./Figures/neo-6m.jpg}
+	\caption{Módulo GPS NEO-6M con una antena externa}
+	\label{fig:texmaker}
+\end{figure}
+
+Para la implementación del módulo de posicionamiento, se decantó por el uso del módulo de GPS NEO-6M desarrollado por la compañía u-blox. Este módulo GPS posee un rango operativo de entre 2.7V y 3.6V, siendo muy similar al microcontrolador elegido anteriormente. Tiene modos de ahorro de energía configurables e interfaces de comunicación UART, SPI y I²C\citep{NEO6M:1}. Se analizaron otras alternativas, encontrando mucha similitudes, pero encontrando mayor documentación y casos de uso por parte de la comunidad para el NEO-6M.
+
+Se muestra a continuación una tabla comparativa respecto a otro módulo similar:
+
+\begin{table}[h]
+	\centering
+	\caption[Tabla comparativa]{Tabla comparativa de placas de desarrollo}
+	\begin{tabular}{l c c}    
+		\toprule
+		\textbf{Característica} 	 & \textbf{Quectel L86} & \textbf{NEO-6M} \\
+		\midrule
+		Disponibilidad & Moderada & Baja			\\		
+		Costo & Moderado & Elevado			\\
+		Sistemas GNSS & GPS & GPS, GLONASS, Galileo		\\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:peces}
+\end{table}
+
+\subsection{Módulo GSM SIM800L}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{./Figures/sim800l.jpg}
+	\caption{Módulo SIM800L}
+	\label{fig:texmaker}
+\end{figure}
+
+Para el desarrollo de la conectividad a las redes de telefonía móvil, se utilizó el módulo SIM800L. SIM800L es un módulo de GSM desarrollado por la compañía Simcom. Funciona con un rango de voltaje entre 3.4V y 4.4V, y permite el uso del módulo mediante comandos AT\footnote{Un comando AT consiste en una cadena de caracteres corta utilizada dentro de la industria desde la década de 1980 hasta el día de hoy para la comunicación con módulos, módems, entre otros dispositivos{\citep{AT:1}.}}. Posee mecanismos para optimizar el consumo de energía pero tiene picos elevados de consumo durante la trasmisión. Respecto a la compatibilidad de generaciones de tecnologías de telefonía móvil, solo soporta hasta 2G\citep{SIM800L:1}. De todas maneras, para los fines del trabajo, resultó suficiente.
+
+\subsection{Batería 18650 y chip cargador TP4056}
+
+\begin{figure}[H]
 \centering
-\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{./Figures/18650.jpg}
+  \captionof{figure}{Batería 18650}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{./Figures/tp4056.jpg}
+  \captionof{figure}{Circuito Mp4056}
+  \label{fig:test2}
+\end{minipage}
 \end{figure}
 
-La forma correcta de utilizar una figura es con referencias cruzadas, por ejemplo: ``Se eligió utilizar un cuadrado azul para el logo, como puede observarse en la figura \ref{fig:cuadradoAzul}''.
+Para la alimentación del microcontrolador y sus módulos, se decidió utilizar una batería recargable del tipo 18650\footnote{El nombre 18650 es debido a las medidas de la batería: 18 indican su diámetro, 18 mm, mientras que el número 650 indica su longitud, que es 65 mm.} de Li-ion de 2600 mAh. Este tipo de baterías tiene la ventaja de trabajar con un rango de voltaje apropiado para microcontroladores y módulos, pudiendo además tener una elevada corriente máxiam de descarga (hasta 2 A aproximadamente).
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
-	\caption{Ilustración del cuadrado azul que se eligió para el diseño del logo.}
-	\label{fig:cuadradoAzul}
-\end{figure}
+Debido a que estas baterías requieren un circuito integrado para la carga y el control ante sobrecargas, se utilizó un módulo Tp4056 que permite la carga de la batería con una entrada micro USB de 5V, lo cual posibilita la carga con un cargador común de teléfono celular, por ejemplo.
 
-El texto de las figuras debe estar siempre en español, excepto que se decida reproducir una figura original tomada de alguna referencia. En ese caso la referencia de la cual se tomó la figura debe ser indicada en el epígrafe de la figura e incluida como una nota al pie, como se ilustra en la figura \ref{fig:palabraIngles}.
+\section{Componentes de software utilizados}
 
-\begin{figure}[htpb]
-	\centering
-	\includegraphics[scale=.3]{./Figures/word.jpeg}
-	\caption{Imagen tomada de la página oficial del procesador\protect\footnotemark.}
-	\label{fig:palabraIngles}
-\end{figure}
+\subsection{Django REST framework}
 
-\footnotetext{Imagen tomada de \url{https://goo.gl/images/i7C70w}}
+Django REST framework es un conjunto de bibliotecas y herramientas del lenguaje Python para el desarrollo de aplicaciones web y APIs REST. Es el framework \textit{de facto} para el desarrollo web en Python. Entre sus características más interesantes, se encuentran\citep{DJANGO:1}
+\begin{itemize}
+	\item Soporte incluído para serialización de datos.
+	\item Código modular y reusable mediante \textit{views} y \textit{viewsets}\footnote{En Django, las diferentes vistas o \textit{views} se agrupan en \textit{viewsets}} para definir interfaces REST sobre objetos.
+	\item Mapeo de bases de datos relacionados a objetos mediante un \textit{Object–relational mapping} (ORM) propio.
+	\item Documentación automática para las API por defecto.
+	\item Estable desde hace más de una década.
+	\item Combina la rapidez para el desarrollo y flexibilidad de un lenguaje de tipado dinámico junto a un conjunto de características y estructuras para escalar el desarrollo y que siga siendo mantenible.
+	\item Soporte para múltiples mecanismos de autenticación ya incluídos.
+	\item Bajo uso de recursos.
+\end{itemize}
 
-La figura y el epígrafe deben conformar una unidad cuyo significado principal pueda ser comprendido por el lector sin necesidad de leer el cuerpo central de la memoria. Para eso es necesario que el epígrafe sea todo lo detallado que corresponda y si en la figura se utilizan abreviaturas entonces aclarar su significado en el epígrafe o en la misma figura.
-
-
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.37]{./Figures/questionMark.png}
-	\caption{¿Por qué de pronto aparece esta figura?}
-	\label{fig:questionMark}
-\end{figure}
-
-Nunca colocar una figura en el documento antes de hacer la primera referencia a ella, como se ilustra con la figura \ref{fig:questionMark}, porque sino el lector no comprenderá por qué de pronto aparece la figura en el documento, lo que distraerá su atención.
-
-Otra posibilidad es utilizar el entorno \textit{subfigure} para incluir más de una figura, como se puede ver en la figura \ref{fig:three graphs}. Notar que se pueden referenciar también las figuras internas individualmente de esta manera: \ref{fig:1de3}, \ref{fig:2de3} y \ref{fig:3de3}.
- 
-\begin{figure}[!htpb]
-     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Un caption.}
-         \label{fig:1de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Otro.}
-         \label{fig:2de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Y otro más.}
-         \label{fig:3de3}
-     \end{subfigure}
-        \caption{Tres gráficos simples}
-        \label{fig:three graphs}
-\end{figure}
-
-El código para generar las imágenes se encuentra disponible para su reutilización en el archivo \file{Chapter2.tex}.
-
-\subsection{Tablas}
-
-Para las tablas utilizar el mismo formato que para las figuras, sólo que el epígrafe se debe colocar arriba de la tabla, como se ilustra en la tabla \ref{tab:peces}. Observar que sólo algunas filas van con líneas visibles y notar el uso de las negritas para los encabezados.  La referencia se logra utilizando el comando \verb|\ref{<label>}| donde label debe estar definida dentro del entorno de la tabla.
-
-\begin{verbatim}
-\begin{table}[h]
-	\centering
-	\caption[caption corto]{caption largo más descriptivo}
-	\begin{tabular}{l c c}    
-		\toprule
-		\textbf{Especie}     & \textbf{Tamaño} & \textbf{Valor}\\
-		\midrule
-		Amphiprion Ocellaris & 10 cm           & \$ 6.000 \\		
-		Hepatus Blue Tang    & 15 cm           & \$ 7.000 \\
-		Zebrasoma Xanthurus  & 12 cm           & \$ 6.800 \\
-		\bottomrule
-		\hline
-	\end{tabular}
-	\label{tab:peces}
-\end{table}
-\end{verbatim}
-
+Se elegió Django para el desarrollo de la API de la aplicación porque se deseó trabajar con un lenguaje más dinámico, pero con un framework que posea ya una estructura para el desarrollo. Esto es debido a que la flexibilidad es un arma de doble filo para la evolución de los sistemas.
 
 \begin{table}[h]
 	\centering
-	\caption[caption corto]{caption largo más descriptivo}
+	\caption[Tabla comparativa]{Tabla comparativa de frameworks web}
 	\begin{tabular}{l c c}    
 		\toprule
-		\textbf{Especie} 	 & \textbf{Tamaño} 		& \textbf{Valor}  \\
+		\textbf{Característica} 	 & \textbf{Django} & \textbf{Express} \\
 		\midrule
-		Amphiprion Ocellaris & 10 cm 				& \$ 6.000 \\		
-		Hepatus Blue Tang	 & 15 cm				& \$ 7.000 \\
-		Zebrasoma Xanthurus	 & 12 cm				& \$ 6.800 \\
+		Lenguaje & Python & Javascript \\		
+		Curva de aprendizaje & Moderada & Muy baja			\\		
+		Arquitectura & Definida & Flexible \\
+		Enfoque & Estructurado & Libre/Flexible		\\
+		Performance & Muy alta & Extremadamente alta \\
+		Baterías incluídas\footnote{El término baterías incluídas se refiere a la disponibilidad por defecto de herramientas y bibliotecas útiles para el desarrollo.} & Sí & No \\
 		\bottomrule
 		\hline
 	\end{tabular}
 	\label{tab:peces}
 \end{table}
 
-En cada capítulo se debe reiniciar el número de conteo de las figuras y las tablas, por ejemplo, figura 2.1 o tabla 2.1, pero no se debe reiniciar el conteo en cada sección. Por suerte la plantilla se encarga de esto por nosotros.
+\subsection{Angular}
 
-\subsection{Ecuaciones}
-\label{sec:Ecuaciones}
+Angular es un framework de código abierto desarrollado originalmente por Google para la construcción de aplicaciones web del tipo SPA\citep{ANGULAR:1}. Utiliza el lenguaje Typescript que es un superset de Javascript, dotándolo de tipado estático y características no presentes en Javascript. Entre sus características más potentes se pueden destacar\citep{ANGULAR:2}
+\begin{itemize}
+	\item Framework completo con una estructura definida.
+	\item Arquitectura orientadas en componentes.
+	\item \textit{Binding} de variables bidireccional.
+	\item Disponibilidad de muchas bibliotecas y herramientas.
+\end{itemize}
 
-Al insertar ecuaciones en la memoria dentro de un entorno \textit{equation}, éstas se numeran en forma automática  y se pueden referir al igual que como se hace con las figuras y tablas, por ejemplo ver la ecuación \ref{eq:metric}.
+Para el desarrollo de las interfaces de usuario, se planteó el uso de \textit{Angular Material}, que es una biblioteca de componentes de interfaces disponible para Angular. Su principal ventaja es la disponibilidad de componentes estándar ya armados y diseño común\citep{ANGULAR:3}.
 
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + \sigma^2\left[ d\theta^2 + \sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-                                                        
-Es importante tener presente que si bien las ecuaciones pueden ser referidas por su número, también es correcto utilizar los dos puntos, como por ejemplo ``la expresión matemática que describe este comportamiento es la siguiente:''
+Para la incorporación de mapas en la aplicación, se definió el uso de Leaftlet, una biblioteca para el desarrollo de mapas en aplicaciones web. Su incorporación a Angular puede hacerse mediante el paquete \textit{ngx-leaftlet}\citep{LEAFLET:1} junto con el proveedor gratuito y \textit{open source} de mapas OpenStreetMap.
 
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = -i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
+\subsection{PostgreSQL}
 
-Para generar la ecuación \ref{eq:metric} se utilizó el siguiente código:
+PostgreSQL es un \textit{relational database management system} o RDBMS de código abierto que hace uso de SQL y es famoso por ser \textit{ACID-compliant}, su gran amplitud de tipos de datos, robustez y extensibilidad\citep{POSTGRES:1}. Es uilizado ampliamente por la industria del software\citep{POSTGRES:2} y se encuentra disponible como una opción por los mayores proveedores de \textit{cloud} de la actualidad. Prácticamente todos los frameworks web permiten conectarse a este motor de bases de datos. 
 
-\begin{verbatim}
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + 
-	\sigma^2\left[ d\theta^2 + 
-	\sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-\end{verbatim}
+\subsection{Heroku}
 
-Y para la ecuación \ref{eq:schrodinger}:
+Heroku es un proveedor de infraestructura y servicios en la nube y \textit{Platform as a Service} (PaaS) focalizado en el rápido despliegue y mantenimiento de las aplicaciones web. La principal ventaja de Heroku es que apunta a abstraer al usuario de detalles técnicas y la infraestructura que da soporte a los serivcios usados.
 
-\begin{verbatim}
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = 
-	-i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
+Se presenta una breve tabla comparativa frente a otros proveedores, como Amazon Web Services (AWS) y Google Cloud Platform (GCP).
+\begin{table}[h]
+	\centering
+	\caption[Tabla comparativa]{Tabla comparativa de proveedores \textit{cloud}}
+	\begin{tabular}{l c c c}    
+		\toprule
+		\textbf{Característica} 	 & \textbf{Heroku} & \textbf{AWS} & \textbf{GCP} \\
+		\midrule
+		Complejidad & Baja & Muy alta & Media-Alta \\		
+		Costo & Medio & Bajo & Bajo-Medio			\\		
+		Flexibilidad & Baja-Media & Muy alta & Alta \\
+		Servicios & Poca oferta & Mucha oferta & Mucha oferta 	\\
+		Regiones & Limitadas & Amplias & Amplias \\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:peces}
+\end{table}
 
-\end{verbatim}
+\section{Herramientas y servicios de software utilizados}
+
+\subsection{Docker}
+
+Docker es una plataforma \textit{open source} para la contenerización de aplicaciones, con el objetivo de\citep{DOCKER:1}:
+\begin{itemize}
+	\item Generar versiones de sistemas idénticas entre diferentes ambientes, es decir que un sistema sea portable.
+	\item Aislar los recursos del \textit{host} de los sistemas que corren en él.
+	\item Reducir los tiempos de despliegue, mantenimiento y soporte de aplicaciones.
+\end{itemize}
+
+Docker permite generar imágenes de sistemas siguiendo un conjunto de instrucciones definidos mediante un archivo \textit{Dockerfile}, habilitando generar estas mismas imágenes en otros ambientes.
+
+\subsection{Visual Studio Code}
+
+\textit{Visual Studio Code} es un editor de texto e IDE (Integrated development environment o Entorno de desarrollo integrado) de código abierto desarrollado originalmente por Microsoft\citep{VSCODE:1}. Su flexibilidad y soporte para una cantidad considerable de extensiones para gran parte de los lenguajes y frameworks de la industria lo posicionó en la última década como uno de los IDE más utilizados.
+
+Permite desarrollar aplicaciones con Python, Javascript/Typescript, incorporando incluso frameworks para sistemas embebidos como ESP-IDF o Platform.IO desarrollo embebidos como es el framework ESP-IDF o PlatformIO\footnote{Ver \href{https://platformio.org/install/ide?install=vscode}{Installation · PlatformIO} o \href{https://docs.espressif.com/projects/esp-idf/en/v4.2.3/esp32/get-started/vscode-setup.html}{Getting started with ESP-IDF VS Code - ESP32}.}. La mayoría de proveedores de servicios en la nube han desarrollado extensiones para agilizar el despliegue de aplicaciones en sus servicios.
+
+\subsection{PyGPSClient}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\textwidth]{./Figures/pygpsclient.png}
+	\caption{Aplicación PyGPSClient}
+	\label{fig:texmaker}
+\end{figure}
+
+PyGPSClient es una herramienta de escritorio disponible desarrollada en Python para el \textit{debugging} y análisis de varios módulos GNSS de u-blox. Su principal ventaja frente a la herramienta estándar para las pruebas de estos módulos, u-center, es que está disponible para cualquier sistema que soporte Python, en comparación de la anterior que solo está disponible para Windows\citep{PYGPSCLIENT:1}.
+
+\subsection{Moserial}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\textwidth]{./Figures/moserial.png}
+	\caption{Aplicación Moserial}
+	\label{fig:texmaker}
+\end{figure}
+
+Moserial es una aplicación de escritorio orientada al \textit{testing} de dispositivos embebidos, consolas y equipos electrónicos que permiten comunicación vía \textit{Universal Asynchronous Receiver-Transmitter} o UART. Se encuentra disponible para el entorno gráfico GNOME, popular en sistemas GNU/Linux. Su uso resultó de importancia para la comunicación con el módulo de GSM, SIM800L.
+
+\subsection{Twilio}
+
+Twilio es un \textit{Communications Platform as a Service} o CPaSS que ofrece diferentes servicios y herramientas para el desarrollo de sistemas que requieran funcionalidades relacionadas a telefonía IP, envío y recepción de mensajes de texto, accediendo a dicho servicios mediante varios mecanismos ofrecidos por la plataforma, como APIs web\citep{TWILIO:1}. Dentro del trabajo, su principal uso fue para la adquisición de un número de teléfono virtual para la recepción de mensajes de texto provinientes de un dispositivo embebido.
