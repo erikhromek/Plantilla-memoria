@@ -1,0 +1,119 @@
+@MISC{TWILIO:1,
+    HOWPUBLISHED = "\url{https://en.wikipedia.org/wiki/Twilio}",
+    AUTHOR = "Wikipedia",
+    TITLE = "Twilio"
+}
+
+@MISC{PYGPSCLIENT:1,
+    HOWPUBLISHED = "\url{https://github.com/semuconsulting/PyGPSClient}",
+    AUTHOR = "semuconsulting/PyGPSClient: Python Graphical GPS Client Application",
+    TITLE = "Documentation for Visual Studio Code"
+}
+
+@MISC{VSCODE:1,
+    HOWPUBLISHED = "\url{https://code.visualstudio.com/docs}",
+    AUTHOR = "Microsoft",
+    TITLE = "Documentation for Visual Studio Code"
+}
+
+@MISC{DOCKER:1,
+    HOWPUBLISHED = "\url{https://docs.docker.com/get-started/}",
+    AUTHOR = "Docker Inc.",
+    TITLE = "Overview of the get started guide"
+}
+
+@MISC{POSTGRES:2,
+    HOWPUBLISHED = "\url{https://db-engines.com/en/ranking}",
+    AUTHOR = "solid IT gmbh",
+    TITLE = "DB-Engines Ranking - popularity ranking of database management systems"
+}
+
+@MISC{POSTGRES:1,
+    HOWPUBLISHED = "\url{https://www.postgresql.org/about/}",
+    AUTHOR = "The PostgreSQL Global Development Group",
+    TITLE = "PostgreSQL: About"
+}
+
+@MISC{LEAFLET:1,
+    HOWPUBLISHED = "\url{https://material.angular.io/guide/getting-started}",
+    AUTHOR = "BlueHalo",
+    TITLE = "bluehalo/ngx-leaflet: Core Leaflet package for Angular.io"
+}
+
+@MISC{ANGULAR:3,
+    HOWPUBLISHED = "\url{https://material.angular.io/guide/getting-started}",
+    AUTHOR = "Angular",
+    TITLE = "Getting Started | Angular Material"
+}
+
+@MISC{ANGULAR:2,
+    HOWPUBLISHED = "\url{https://angular.io/guide/architecture}",
+    AUTHOR = "Angular",
+    TITLE = "Angular - Introduction to Angular concepts"
+}
+
+@MISC{ANGULAR:1,
+    HOWPUBLISHED = "\url{https://angular.io/guide/what-is-angular}",
+    AUTHOR = "Angular",
+    TITLE = "Angular - What is Angular?"
+}
+
+@MISC{DJANGO:1,
+    HOWPUBLISHED = "\url{https://www.django-rest-framework.org/}",
+    AUTHOR = "Sherpany",
+    TITLE = "Home - Django REST Framework"
+}
+
+@MISC{SIM800L:1,
+    HOWPUBLISHED = "\url{https://www.makerhero.com/img/files/download/Datasheet_SIM800L.pdf}",
+    AUTHOR = "Simcom",
+    TITLE = "SIM800L Hardware Design"
+}
+
+@MISC{AT:1,
+    HOWPUBLISHED = "\url{https://en.wikipedia.org/wiki/Hayes_AT_command_set}",
+    AUTHOR = "Wikipedia",
+    TITLE = "Hayes AT command set"
+}
+
+@MISC{NEO6M:1,
+    HOWPUBLISHED = "\url{https://content.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_%28GPS.G6-HW-09005%29.pdf}",
+    AUTHOR = "u-blox",
+    TITLE = "NEO-6 Data Sheet"
+}
+
+@MISC{ESP32:1,
+    HOWPUBLISHED = "\url{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}",
+    AUTHOR = "Espressif Systems",
+    TITLE = "ESP32 Series Datasheet"
+}
+
+@MISC{NPERF:1,
+    HOWPUBLISHED = "\url{https://www.nperf.com/es/map/AR/}",
+    TITLE = "Cobertura 3G / 4G / 5G en Buenos Aires - nPerf.com"
+}
+
+@MISC{PNUD:1,
+    HOWPUBLISHED = "\url{https://www.undp.org/es/publications/sinopsis-seguridad-ciudadana}",
+    AUTHOR = "Programa de las Naciones Unidas para el Desarrollo",
+    TITLE = "Sinopsis: Seguridad Ciudadana ",
+    MONTH = "04",
+    YEAR = "2014",
+    URLDATE = {2014-04-15}
+}
+
+@MISC{LK109MANUAL:1,
+    HOWPUBLISHED = "\url{https://www.manualslib.com/manual/1035746/Tkstar-Lk109.html}",
+    TITLE = "TKSTAR LK109 USER MANUAL"
+}
+
+@MISC{TK102BMANUAL:1,
+    HOWPUBLISHED = "\url{https://www.munstergps.ie/wp-content/uploads/TK102B-Manual.pdf}",
+    TITLE = "TK102B Manual.pdf"
+}
+
+@MISC{CLONES:1,
+    HOWPUBLISHED = "\url{https://www.traccar.org/clones/}",
+    AUTHOR="Traccar",
+    TITLE = "Chinese Clones"
+}
