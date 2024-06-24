@@ -1,4 +1,4 @@
-\textit{\chapter{Diseño e implementación} % Main chapter title
+\textit{\chapter{Diseño e implementación}} % Main chapter title
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -60,29 +60,25 @@ Se pueden identificar los siguientes componentes:
 	\item En primer lugar, se observa a un usuario del dispositivo embebido, que es el componente que envía alertas mediante SMS hacia el servicio en la nube de Twilio.
 	\item En segundo lugar, se encuentra el servicio de Twilio, que recepciona los mensajes recibidos y los reenvía mediante un \textit{webhook} hacia el servicio web o \textit{backend}. La comunicación entre el dispositivo embebido y Twilio fue posible ya que en este último se contrató un número teléfonico para la recepción de los SMS. 
 	\item En tercer lugar, el \textit{backend}, que es el componente encargado de la recepción de alertas, procesamiento y almacenamiento de datos y comunicación con el \textit{frontend}. Fue desarrollado con el \textit{framework} Django, en Python.
-	\item A continuación, se ubica el \textit{frontend}, que es la aplicación web que se encarga de toda la interacción del usuario operador con el sistema, incluyendo carga de datos y gestión de alertas. Consiste en una \textit{Single Page Application } y su desarrollo fue realizado en Angular, cuyo lenguaje es TypeScript.
+	\item A continuación, se ubica el \textit{frontend}, que es la aplicación web que se encarga de toda la interacción del usuario operador con el sistema, incluyendo carga de datos y gestión de alertas. Consiste en una \textit{Single Page Application } y su desarrollo fue realizado en Angular, cuyo lenguaje es TypeScript\citep{ANGULAR:1}.
 	\item Por último lugar, se encuentra un componente menor, pero no menos importante que es la base de datos encargada de almacenar toda la información del sistema, como usuarios, alertas, tipos de alertas, entre otros. El motor elegido fue PostgreSQL, descrito en el capítulo anterior.
 \end{itemize}
-   
-Resulta importante destacar que toda la interacción entre el \textit{backend} y \textit{frontend} es realizada mediante \textit{endpoints} HTTP y \textit{WebSockets} para comunicación en tiempo real, utilizando TLS/SSL para securizar las conexiones. 
 
 Además, todos los \textit{endpoints} requieren de autenticación y autorización por parte del operador, a excepción de algunos que deben ser públicos para ser utilizados.
-
-Por el lado del despliegue, los componentes web se desplegaron en la nube de Heroku mediante el uso de \textit{dynos} básicos, que son contenedores de aplicaciones web\citep{HEROKU:1}, y para la base de datos, se utilizó un \textit{addon} de PostgreSQL, que consiste en un complemento que permite incorporar una base de datos como SaaS u otros componentes requeridos por los sistemas, como pueden ser bases de datos en memoria o brókers\citep{HEROKU:2}.
-
+   
 \section{Desarrollo de módulos de hardware}
 
-El firmware del dispositivo embebido fue desarrollado con el \textit{Espressif IoT Development Framework}, también conocido como \textit{ESP-IDF}, el framework oficial de la placa de desarrollo elegida para el proyecto, ESP32-S. Su lenguaje de programación es C y provee un robusto conjunto de bibliotecas para el desarrollo sobre periféricos y funcionalidades del ESP32. Adicionalmente, ESP-IDF funciona como registro de un conjunto de componentes realizados por el fabricante oficial o la comunidad para extender funcionalidades comunes de los sistemas embebidos. 
+El firmware del dispositivo embebido fue desarrollado con el \textit{Espressif IoT Development Framework}, abreviado como \textit{ESP-IDF}, el framework oficial de la placa de desarrollo elegida para el proyecto, ESP32-S\citep{ESPIDF:1}. Su lenguaje de programación es C y provee un robusto conjunto de bibliotecas para el desarrollo sobre periféricos y funcionalidades del ESP32. Adicionalmente, ESP-IDF funciona como registro de un conjunto de componentes realizados por el fabricante oficial o la comunidad para extender funcionalidades comunes de los sistemas embebidos. 
 
 Como placa de desarrollo, el firwmare se desarrolló para una placa de desarrollo ESP32-WROOM-32s del fabricante NodeMCU, un kit de desarrollo atractivo por su bajo costo, interoperabilidad, documentación disponible y bajo consumo de energía. La ventaja de usar esta placa es que, además de contar con el framework ESP-IDF y todas las características descritas en el capítulo 2, permite que el firmware desarrollado pueda ser adaptado a placas de características similares, no quedando el firmware atado solamente a una alternativa.
 
 Para el desarrollo, se importaron varias bibliotecas usadas para el desarrollo embebido. Entre estas, resulta importante destacar dos bibliotecas importantes:
 \begin{itemize}
-	\item \textit{libnmea}: Biblioteca que facilita la lectura de los datos recibidos del módulo GPS. Esto es posible ya que el NEO-6M utiliza un formato de mensajes estándar denominado NMEA. La ventaja de usar \textit{libnmea} es que convierte los datos recibidos en estructuras de C, pudiendo acceder rápidamente a valores como la latitud, longitud, etc.
-	\item \textit{iot-button}: Biblioteca que permite configuraciones complejas sobre botones o pulsadores. La ventaja de utilizar este componente es que permite rápidamente configurar funciones de \textit{callback} ante eventos como pulsaciones largas, sin requerir que se desarrolle lógica de control, así como también contempla inconvenientes como un \textit{debounce} o falsas pulsaciones al momento de accionar el botón.
+	\item \textit{libnmea}: Biblioteca que facilita la lectura de los datos recibidos del módulo GPS\citep{LIBNMEA:1}. Esto es posible ya que el NEO-6M utiliza un formato de mensajes estándar denominado NMEA\citep{NMEA:1}. La ventaja de usar \textit{libnmea} es que convierte los datos recibidos en estructuras de C, pudiendo acceder rápidamente a valores como la latitud, longitud, etc.
+	\item \textit{iot-button}: Biblioteca que permite configuraciones complejas sobre botones o pulsadores\citep{BUTTON:1}. La ventaja de utilizar este componente es que permite rápidamente configurar funciones de \textit{callback} ante eventos como pulsaciones largas, sin requerir que se desarrolle lógica de control, así como también contempla inconvenientes como un \textit{debounce} o falsas pulsaciones al momento de accionar el botón\citep{DEBOUNCE:1}.
 \end{itemize}
 
-Estas dos bibliotecas fueron importadas al proyecto como \textit{managed components}, propios del registro de componentes externos de ESP-IDF. En la tabla \ref{tab:bibliotecas-esp32} se encuentra detallado el uso que tuvo cada biblioteca importadas para el firmware.
+Estas dos bibliotecas fueron importadas al proyecto como \textit{managed components}, propios del registro de componentes externos de ESP-IDF\citep{ESPIDF:1}. En la tabla \ref{tab:bibliotecas-esp32} se encuentra detallado el uso que tuvo cada biblioteca importadas para el firmware.
 
 \begin{table}[H]
 	\centering
@@ -121,17 +117,25 @@ Estas dos bibliotecas fueron importadas al proyecto como \textit{managed compone
 	\label{tab:bibliotecas-esp32}
 \end{table}
 
-Para el desarrollo, compilación, pruebas y monitoreo, se trabajó con el entorno de desarrollo integrado Visual Studio Code, en conjunto con la extensión oficial de ESP-IDF, el cual facilita el trabajo con el kit de desarrollo y la incorporación y uso de módulos propios del ecosistema del ESP32. En la figura \ref{esp32:diagrama} se pueden observar los componentes físicos del dispositivo embebido:
+Para el desarrollo, compilación, pruebas y monitoreo, se trabajó con el entorno de desarrollo integrado Visual Studio Code, en conjunto con la extensión oficial de ESP-IDF, el cual facilita el trabajo con el kit de desarrollo y la incorporación y uso de módulos propios del ecosistema del ESP32. En la figura \ref{fig:esp32:diagrama} se pueden observar los componentes físicos del dispositivo embebido:
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{./Figures/esp32-arquitectura.png}
 	\caption{Esquema de componentes de hardware del ESP32}
-	\label{fig:esp32:arquitectura}
+	\label{fig:esp32:diagrama}
 \end{figure}
 
-Adicionalmente a los dispositivos originalmente elegidos, se incorporó un regulador de tensión LM2596 en la entrada de energía de la batería no contemplado originalmente, con el objetivo de adecuar el voltaje de entrada de 4.2 V a 3.3 V. Además, se incorporó una antena activa para el módulo GPS ya con una antena pasiva la precisión de la localización obtenida era baja o tomaba más tiempo del esperado. Por otra parte, se reemplazó la antena helicoidal del módulo GSM por una con formato PCB y 3dBi de ganancia.
+Adicionalmente a los dispositivos originalmente elegidos, se incorporó un regulador de tensión LM2596 en la entrada de energía de la batería no contemplado originalmente, que permite adecuar el voltaje de entrada de 4.2 V a 3.3 V\citep{LM2596:1}, requeridos por el ESP32 y el NEO-6M. Además, se incorporó una antena activa para el módulo GPS ya con una antena pasiva la precisión de la localización obtenida era baja o tomaba más tiempo del esperado. Por otra parte, se reemplazó la antena helicoidal del módulo GSM por una con formato PCB y 3dBi de ganancia. Se muestra a continuación, en la figura \ref{fig:esp32:fisico} la implementación física del prototipo en una placa de pruebas:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{./Figures/esp32-fisico.jpg}
+	\caption{Esquema de componentes de hardware del ESP32}
+	\label{fig:esp32:fisico}
+\end{figure}
+
 
 \subsection{Tareas del dispositivo embebido}
 
@@ -147,7 +151,7 @@ Para implementar las funciones del dispositivo embebido, se dividió el desarrol
 			\item \texttt{CSQ}: mensaje que incluye el nivel de calidad de la señal de telefonía móvil.
 			\item \texttt{GSN}: mensaje que incluye el IMEI del dispositivo; se utiliza como mecanismo de seguridad ya que el SMS de configuración de teléfono debe incorporar los primeros dígitos del IMEI como validación.		
 		\end{itemize}
-		\item Manejador del módulo GPS: consiste en una función con un bucle que se encarga de recibir comandos/respuestas del módulo GSM leyendo el puerto serie y guardar la información recibida. Existen diferentes tipos de mensajes, pero para los fines del registro de la localización, solamente se está guardado la información del tipo de mensaje \textit{GPGGA}, que informa la posición actual y datos de los satélites\citep{nmea:1}. En la figura \ref{fig:esp32:tasks1} se puede visualizar el bucle con las operaciones.
+		\item Manejador del módulo GPS: consiste en una función con un bucle que se encarga de recibir comandos/respuestas del módulo GSM leyendo el puerto serie y guardar la información recibida. Existen diferentes tipos de mensajes, pero para los fines del registro de la localización, solamente se está guardado la información del tipo de mensaje \textit{GPGGA}, que informa la posición actual y datos de los satélites\citep{NMEA:2}. En la figura \ref{fig:esp32:tasks1} se puede visualizar el bucle con las operaciones.
 		\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.95\textwidth]{./Figures/esp32-tasks1.png}
@@ -167,19 +171,18 @@ Para implementar las funciones del dispositivo embebido, se dividió el desarrol
 		\item Almacenamiento períodico de datos: cada 1 minuto esta tarea se encarga de leer las variables de latitud, longitud, IMEI y número de teléfono asignado y almacenarlas en el almacenamiento no volátil. en el caso de que los valores fueran válidos. En la figura \ref{fig:esp32:tasks3} se puede observar el bucle ejecutado por la tarea.
 		\item Control períodico del módulo GSM: esta tarea se encarga de solicitarle información al módulo GSM información sobre el estado de la red cada 1 minuto. Esto es debido a que el módulo GSM no reporta automáticamente su estado, a diferencia del módulo GPS que si lo hace.  En la figura \ref{fig:esp32:tasks3} se puede apreciar el control que realiza la función.
 		
-				\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{./Figures/esp32-tasks3.png}
-	\caption{Diagramas de flujo de las tareas de control y almacenamiento}
-	\label{fig:esp32:tasks3}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{./Figures/esp32-tasks3.png}
+		\caption{Diagramas de flujo de las tareas de control y almacenamiento}
+		\label{fig:esp32:tasks3}
+	\end{figure}
 
 \end{itemize}
 
-
 Por último, se puede considerar una última función más dentro del firmware que es el interruptor ante la pulsación del botón activador. En caso que se supere un umbral de 3 segundos del pulsador presionado, se activará \textit{callback} definido para ese evento. Este evento se encarga de levantar los valores actuales de la última localización válida almacenada, determinar cual es el número de teléfono al cual se debe enviar el mensaje de alerta y enviar los comandos hacia el módulo GSM para enviar el SMS. 
 
-En la figura \ref{esp32:callback} se muestra un diagrama de flujo resumido de la operatoria de la interrupción. Para la asociación del \textit{callback} con el evento, se puede ver el código definido en la función inicial del firmware en la figura \ref{esp32:callback-codigo}, donde \texttt{sos\_button\_long\_press\_cb} es una función definida y \texttt{cfg} es la definición del evento.
+En la figura \ref{esp32:callback-codigo} se muestra un diagrama de flujo resumido de la operatoria de la interrupción. Para la asociación del \textit{callback} con el evento, se puede ver el código definido en la función inicial del firmware en la figura \ref{fig:esp32:callback-codigo}, donde \texttt{sos\_button\_long\_press\_cb} es una función definida y \texttt{cfg} es la definición del evento.
 
 \begin{lstlisting}[label=esp32:callback-codigo,caption=Definición del evento y asociación del \textit{callback}]  % Start your code-block
 // SOS button configure
@@ -209,9 +212,9 @@ ESP_ERROR_CHECK(iot_button_register_event_cb(gpio_btn, cfg, sos_button_long_pres
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\textwidth]{./Figures/esp32-callback.png}
+	\includegraphics[width=0.5\textwidth]{./Figures/esp32-callback.png}
 	\caption{Diagrama de flujo del \textit{callback} por pulsación}
-	\label{fig:esp32:arquitectura}
+	\label{fig:esp32:callback-codigo}
 \end{figure}
 
 
@@ -222,26 +225,24 @@ Se aplicaron diferentes técnicas de optimización sobre el ESP32-S y los módul
 	\item Se configuró \textit{FreeRTOS} para solamente utilizar un núcleo del ESP32-S.
 	\item Se limitó la frecuencia del procesador para solamente utilizar como máximo 80 MHz.
 	\item Se desactivaron todos los periféricos no usados, como WiFi, Bluetooth, etc.
-	\item Se configuró el \textit{Dynamic frequency scaling} o DFS del ESP32, que permite que el 
-	\item Se configuró el modo \textit{sleep} del módulo SIM800L, desactivandolo solamente cada ciertos intervalos de tiempo.
+	\item Se configuró el \textit{Dynamic frequency scaling} o DFS del ESP32, que permitiría que se reduzca la velocidad del reloj del procesador\citep{ESP32:2}.
+	\item Se configuró el modo \textit{sleep} del módulo SIM800L, desactivandolo solo cuando se le debe enviar comandos.
 	\item Se desactivó el LED de notificación de calidad de señal del módulo SIM800L, ya que la comprobación se realiza de forma programática.
 	\item Se redujo la frecuencia de actualización de mensajes del módulo NEO-6M hacia el ESP32.
-	\item Se aplicó sobre NEO-6M una configuración de energía llamada \textit{Power Save Mode} para reducir la frecuencia de actualización hacia los satélites GPS.
+	\item Se aplicó sobre NEO-6M una configuración de energía denominada \textit{Power Save Mode} para reducir la frecuencia de actualización hacia los satélites GPS\citep{NEO6M:2}.
 	\item Se configuró el modo \textit{sleep} del módulo SIM800L, desactivandolo solamente cada ciertos intervalos de tiempo.
-	\item Se utilizaron tiempos muertos de espera o \textit{standy} del orden de varios segundos en el ESP32-S para permitir reducir la frecuencia, resultando en que gran parte del tiempo la placa se encuentra en espera.
+	\item Se utilizaron tiempos muertos de espera o \textit{standy} del orden de varios segundos en el ESP32-S, resultando en que gran parte del tiempo, la placa se encuentre en espera.
 	\item Se redujo el consumo de energía de los 3 LEDs indicadores de GSM, GPS y batería mediante la incorporación de resistencias, requiriendo aproximadamente 1 mA para todos los LEDs.
 \end{itemize}
 
-Adicionalmente, se intentó aplicar un manejo tanto manual como automático (configurable mediante el uso de DFS) del modo \textit{light sleep} pero se encontró que, después de varios intentos y pruebas, el consumo de energía no disminuyó. Esto es debido a características de fabricación del modelo ESP32-WROOM-32s de NodeMCU, como el regulador de tensión incorporado en la placa de desarrollo, que tiene un consumo en \textit{idle} de aproximadamente 15 mA, aunque esté en \textit{deep sleep} o \textit{light sleep}.
-
-Además, la incorporación de \textit{light sleep} complejiza la lógica de funcionamiento de las tareas del ESP32, y siendo que no se pudo verificar la reducción de consumo energético al utilizarlo, se descartó. Por último, se notaron algunos inconvenientes al momento de leer datos de los módulos UART. En caso de haber continuado con la implementación del modo \textit{light sleep} de forma automática, hubiera sido necesario incorporar algunas comprobaciones adicionales para solucionar esta inestabilidad. La ventaja de utilizar el modo automático de \textit{light sleep} es que gran parte del tiempo \textit{idle} del ESP32 hubiera representado un ahorro de energía de varios mA.
+Además, se intentó aplicar un manejo tanto manual como automático (configurable mediante el uso de DFS) del modo \textit{light sleep} pero se encontró que, después de varios intentos y pruebas, el consumo de energía no disminuyó. Se interpretó, en base a las pruebas durante el desarrollo, que es debido a características de fabricación del modelo ESP32-WROOM-32s de NodeMCU. Se midió un consumo en \textit{idle} de aproximadamente 15 mA, aunque esté en \textit{deep sleep} o \textit{light sleep}.
 
 \section{Desarrollo de módulo de backend}
 
 El \textit{backend} fue desarrollado con el framework Django y Python. Para todas las funcionalidades, se estructuró el proyecto siguiendo los lineamientos de Django, que consiste en principalmente dividir la aplicación en módulos web por temática o características. Para el caso de esta aplicación, se identificaron dos módulos:
 \begin{itemize}
 	\item \textit{Users}: para englobar toda la funcionalidad referida a usuarios.
-	\item \textit{Alerts}: para englobar toda la funcionalidad referida a usuarios.
+	\item \textit{Alerts}: para englobar toda la funcionalidad referida a beneficiarios y alertas.
 \end{itemize}
 
 Esto no significa que no puedan o no deban referenciarse los módulos entre sí, sino que es una forma lógica de estructurar la información perteneciente a la misma lógica de negocio. En la figura \ref{backend:folder1} y \ref{backend:folder2} se pueden visualizar las carpetas de cada módulo con sus respectivos componentes.
@@ -257,13 +258,79 @@ Esto no significa que no puedan o no deban referenciarse los módulos entre sí,
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{./Figures/backend-folder2.png}
-  \captionof{figure}{Estructura de archivos de módulo de \textit{Alerts}
+  \captionof{figure}{Estructura de archivos de módulo de \textit{Alerts}}
   \label{backend:folder2}
 \end{minipage}
 \end{figure}
 
+Para la implementación, se incorporaron varias bibliotecas externas, cuyo aporte se muestra en la tabla \ref{backend:libraries}:
 
-Respecto a las características, se diseño el \textit{backend} con la idea de un producto \textit{multitenant}, es decir que permita que a futuro existan diferentes organizaciones cliente dentro de este. Debido a esta característica, todos los datos están contenidos dentro de una misma organización, compartida por los usuarios, beneficiarios, entre otros datos cargados. En la figura \ref{backend:modelo} se puede visualizar el modelo de datos relacional con las entidades diseñadas.
+\begin{table}[H]
+	\centering
+	\caption[Tabla de bibliotecas]{Bibliotecas externas más relevantes}
+	\begin{tabular}{l c}    
+		\toprule
+		\textbf{Bibilioteca} & \textbf{Uso} \\
+		\midrule
+		\makecell{\textit{djangorestframework}}	 & \makecell{Biblioteca de Django para \\ el desarrollo de APIs REST} 	\\		
+		\hline
+		\makecell{\textit{psycopg}}  & \makecell{Biblioteca para conexión a PostgreSQL\citep{DJANGO:4}}  \\
+		\hline	
+		\makecell{\textit{django-twilio}}  & \makecell{Biblioteca oficial de Twilio\citep{DJANGO:3} \\ para comunicación con \textit{Twilio Messaging Services} }  \\
+		\hline
+		\makecell{\textit{channels}}	 & \makecell{Biblioteca para la implementación \\ de WebSockets en Django\citep{DJANGO:5}}	\\
+		\hline	
+		\makecell{\textit{djangorestframework-simplejwt}} &  \makecell{Biblioteca para el \textit{middleware}  \\ de autenticación mediante tokens JWT} \\
+		\hline
+		\makecell{\textit{drf\_yasg}} &  \makecell{Biblioteca para generar \\ documentación de API en Swagger} \\
+		\hline
+		\makecell{\textit{uvicorn}} & Servidor web ASGI para Python\citep{DJANGO:7} \\
+		\hline
+		\makecell{\textit{django-cors-headers}}  & \makecell{\textit{Middleware} para incorpora  \\ encabezados en las peticiones de la API} \\
+		\hline
+		\makecell{\textit{dj-database-url}} &  \makecell{Biblioteca para conectarse \\ a base de datos PostgreSQL de Heroku} \\
+		\hline
+		\makecell{\textit{django-channels-jwt}} & \textit{Middleware} para autenticación de WebSockets \\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{backend:libraries}
+\end{table}
+
+
+En la figura \ref{backend:modulos} se presenta en forma de diagrama de bloques los principales componentes de la API:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/backend-componentes.png}
+	\caption{Diagrama en bloques del \textit{backend}}
+	\label{backend:modulos}
+\end{figure}
+
+Se describen a continuación los componentes de mayor relevancia de los módulos:
+
+\begin{itemize}
+	\item Modelos: clases que representan los modelos de datos, como pueden ser las entidades de una alerta y un beneficiario.
+	\item Serializadores: clases que agrupan la lectura, escritura, validación y salida de modelos de datos. Los serializadores permiten encapsular lógica de validación para diferentes operaciones o adaptar la representación de los datos según la necesidad\citep{DJANGO:8}. En la figura \ref{backend:serializer1} se muestra el serializador de la entidad \textit{Beneficiary} junto con validaciones y acciones que deben realizarse durante la creación y actualización, así como también definir restricciones al momento de realizar la carga de datos.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{./Figures/backend-serializer1.png}
+	\caption{Serializador de la entidad \textit{Beneficiary}}
+	\label{backend:serializer1}
+    \end{figure}
+	\item Vistas: clases que engloban peticiones HTTP sobre entidades o clases para atender un único tipo de petición, dependiendo del requerimiento\citep{DJANGO:9}. En la figura \ref{backend:view1} se puede apreciar la definición del \textit{ViewSet} de la clase \textit{Beneficiary}, pudiendo observarse que se asignaron de forma declarativa los permisos requeridos para realizar las peticiones, y los filtros habilitados, sin requerir código adicional.
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{./Figures/backend-view1.png}
+	\caption{Serializador de la entidad \textit{Beneficiary}}
+	\label{backend:view1}
+    \end{figure}
+    \item Consumidores: representa un servicio de WebSockets que permite obtener una alerta entrante en tiempo real.
+    \item \textit{Middlewares}: clases que permiten interceptar peticiones hacia la API\citep{DJANGO:10} y realizar comprobaciones como ver el rol del usuario, o que este tenga la correcta autorización en las peticiones. No se desarrolló ningún \textit{middleware} sino que se utilizaron bibliotecas externas ya provistas.
+    \item Señales: hace referencia a una notificación que se genera dentro de la aplicación ante un evento\citep{DJANGO:11}. En el marco de esta aplicación, cuando se almacena una nueva alerta, se genera una señal que notifica en tiempo real mediante \textit{WebSockets} el dato creado.
+\end{itemize}
+
+Respecto a las características, se diseñó el \textit{backend} con la idea de un producto \textit{multitenant}, es decir que permita que a futuro existan diferentes organizaciones cliente dentro de este\citep{DJANGO:12}. Debido a esta característica, todos los datos están contenidos dentro de una misma organización, compartida por los usuarios, beneficiarios, entre otros datos cargados. En la figura \ref{backend:modelo} se puede visualizar el modelo de datos relacional con las entidades diseñadas.
 
 \begin{figure}[H]
 	\centering
@@ -272,13 +339,73 @@ Respecto a las características, se diseño el \textit{backend} con la idea de u
 	\label{backend:modelo}
 \end{figure}
 
+
 De todas maneras, para esta versión inicial, solo se contempla un usuario por organización en el \textit{frontend}, aunque a futuro el diseño y la lógica de negocio en la API se encuentra desarrollada para contemplar una organización con un usuario raíz o padre y un conjunto de usuarios operadores, de menor privilegio.
 
-\subsection{Seguridad}
+\subsection{Servicios desarrollados}
+
+A continuación, se muestran en la tabla \ref{tab:endpoints} los servicios implementados:
+
+\begin{table}[H]
+	\centering
+	\caption[\textit{Servicios}]{\textit{Endpoints} implementados}
+	\begin{tabular}{l c c}    
+		\toprule
+		\textbf{\textit{Endpoint}} 	 & \textbf{Descripción} \\
+		\midrule
+		GET /alert-types/ & Obtener tipos de alerta  \\		
+		POST /alert-types/& Crear un tipo de alerta		\\		
+		GET /alert-types/{id}/ & Obtener un tipo de alerta \\
+		PUT /alert-types/{id}/ & Editar un tipo de alerta		\\
+		DELETE /alert-types/{id}/ & Eliminar un tipo de alerta  \\
+		\hline
+		GET /alerts/ & Obtener alertas  \\		
+		GET /alerts-summary/ & Obtener alertas de las últimas 24 horas \\		
+		GET /alerts/{id}/ & Obtener una alerta \\
+		PUT /alerts/{id}/ & Editar una alerta		\\
+		PATCH /alerts/{id}/ & Editar parcialmente una alerta   \\
+		\hline
+		GET /beneficiaries/ & Obtener beneficiarios  \\			
+		GET /beneficiaries/{id}/ & Obtener un beneficiario \\
+		PUT /beneficiaries/{id}/ & Editar un beneficiario		\\
+		PATCH /beneficiaries/{id}/ & Editar parcialmente un beneficiario   \\
+		DELETE /beneficiaries/{id}/ & Desactivar un beneficiario \\
+		\hline
+		GET /beneficiary-types/ & Obtener tipos de beneficiarios  \\			
+		GET /beneficiary-types/{id}/ & Obtener un tipo de beneficiario \\
+		PUT /beneficiary-types/{id}/ & Editar un tipo de beneficiario		\\
+		DELETE /beneficiary-types/{id}/ & Desactivar un beneficiario \\
+		\hline
+		POST /users/admin/ & \makecell{Crear un usuario administrador \\ con una organización}  \\			
+		GET /user-details/ & Obtener datos del usuario \\
+		PATCH /user/{id}/ & Editar parcialmente un usuario \\
+		\hline
+		POST /login/ & Realizar login programático \\	
+		GET /ws-auth/ & \makecell{Obtener token efímero para \\ conexión a WebSockets} \\
+		POST /twilio-webhook/ & \makecell{Webhook para generar una \\ alerta desde Twilio} \\	
+		WS /ws/alerts/organization-{id}/ & Conectarse a canal de WebSockets	\\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:endpoints}
+\end{table}
+
+Todos estos servicios fueron documentados mediante Swagger, una herramienta para documentación de APIs\citep{DJANGO:6}. Todas las vistas, a excepción del registro de un nuevo usuario administrador, requieren de autenticación mediante un token JWT. Esto es autogestionado mediante la incorporación de un \textit{middleware} de Django, sin requerir código adicional más allá de declarar en la configuración de Django de la aplicación, que \textit{middlewares} utilizar para la autenticación, como se observa en la figura \ref{backend:settings1}:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./Figures/backend-settings1.png}
+	\caption{Configuración de \textit{middlewares} para la autenticación de la API}
+	\label{backend:settings1}
+\end{figure}
 
 
-Servicios desarrollados
 
 \section{Desarrollo de módulo de frontend}
 
-\section{Integración}}
+\section{Integración}
+
+Resulta importante destacar que toda la interacción entre el \textit{backend} y \textit{frontend} es realizada mediante \textit{endpoints} HTTP y \textit{WebSockets} para comunicación en tiempo real, utilizando TLS/SSL para securizar las conexiones. 
+
+Por el lado del despliegue, los componentes web se desplegaron en la nube de Heroku mediante el uso de \textit{dynos} básicos, que son contenedores de aplicaciones web\citep{HEROKU:1}, y para la base de datos, se utilizó un \textit{addon} de PostgreSQL, que consiste en un complemento que permite incorporar una base de datos como SaaS u otros componentes requeridos por los sistemas, como pueden ser bases de datos en memoria o brókers\citep{HEROKU:2}.
+
