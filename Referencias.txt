@@ -1,0 +1,5 @@
+HEROKU:1 https://devcenter.heroku.com/articles/dynos
+HEROKU:2 https://devcenter.heroku.com/articles/add-ons
+
+DEBOUNCE:1 https://www.analog.com/en/resources/glossary/debounce.html
+NMEA:1 https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm

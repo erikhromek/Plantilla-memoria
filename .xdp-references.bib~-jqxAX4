@@ -1,0 +1,132 @@
+@misc{EXPRESS:1,
+    title = {Most used web frameworks among developers worldwide, as of 2023},
+    howpublished = {\url{https://www.statista.com/statistics/1124699/worldwide-developer-survey-most-used-frameworks-web/}},
+    notes = {Publicado el 19/07/2023},
+    author = {Lionel Sujay Vailshery},
+}
+
+@misc{TWILIO:1,
+    howpublished = {\url{https://en.wikipedia.org/wiki/Twilio}},
+    title = {Twilio},
+    author = {Wikipedia},
+}
+
+@misc{PYGPSCLIENT:1,
+    title = {Python Graphical GPS Client Application supporting NMEA, UBX, RTCM3, NTRIP \& SPARTN Protocols},
+    howpublished = {\url{https://github.com/semuconsulting/PyGPSClient}},
+    author = {SEMU Consulting},
+}
+
+@misc{VSCODE:1,
+    author = {Microsoft},
+    howpublished = {\url{https://code.visualstudio.com/docs}},
+    title = {Documentation for Visual Studio Code},
+}
+
+@misc{DOCKER:1,
+    howpublished = {\url{https://docs.docker.com/get-started/}},
+    title = {Overview of the get started guide},
+    author = {Docker Inc.},
+}
+
+@misc{POSTGRES:2,
+    title = {DB-Engines Ranking - popularity ranking of database management systems},
+    howpublished = {\url{https://db-engines.com/en/ranking}},
+    author = {solid IT gmbh},
+}
+
+@misc{POSTGRES:1,
+    title = {PostgreSQL: About},
+    author = {The PostgreSQL Global Development Group},
+    howpublished = {\url{https://www.postgresql.org/about/}},
+}
+
+@misc{LEAFLET:1,
+    howpublished = {\url{https://material.angular.io/guide/getting-started}},
+    title = {bluehalo/ngx-leaflet: Core Leaflet package for Angular.io},
+    author = {BlueHalo},
+}
+
+@misc{ANGULAR:3,
+    author = {Angular},
+    title = {Getting Started | Angular Material},
+    howpublished = {\url{https://material.angular.io/guide/getting-started}},
+}
+
+@misc{ANGULAR:2,
+    title = {Angular - Introduction to Angular concepts},
+    author = {Angular},
+    howpublished = {\url{https://angular.io/guide/architecture}},
+}
+
+@misc{ANGULAR:1,
+    title = {Angular - What is Angular?},
+    author = {Angular},
+    howpublished = {\url{https://angular.io/guide/what-is-angular}},
+}
+
+@misc{DJANGO:1,
+    author = {Sherpany},
+    title = {Home - Django REST Framework},
+    howpublished = {\url{https://www.django-rest-framework.org/}},
+}
+
+@misc{SIM800L:1,
+    author = {Simcom},
+    title = {SIM800L Hardware Design},
+    howpublished = {\url{https://www.makerhero.com/img/files/download/Datasheet_SIM800L.pdf}},
+}
+
+@misc{AT:1,
+    title = {Hayes AT command set},
+    howpublished = {\url{https://en.wikipedia.org/wiki/Hayes_AT_command_set}},
+    author = {Wikipedia},
+}
+
+@misc{NEO6M:1,
+    howpublished = {\url{https://content.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_\%28GPS.G6-HW-09005\%29.pdf}},
+    author = {u-blox},
+    title = {NEO-6 Data Sheet},
+}
+
+@misc{ESP32:1,
+    title = {ESP32 Series Datasheet},
+    howpublished = {\url{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}},
+    author = {Espressif Systems},
+}
+
+@misc{NPERF:1,
+    title = {Cobertura 3G / 4G / 5G en Buenos Aires - nPerf.com},
+    howpublished = {\url{https://www.nperf.com/es/map/AR}},
+}
+
+@misc{PNUD:1,
+    year = {2014},
+    urldate = {2014-04-15},
+    title = {Sinopsis: Seguridad Ciudadana},
+    howpublished = {\url{https://www.undp.org/es/publications/sinopsis-seguridad-ciudadana}},
+    month = {04},
+    author = {Programa de las Naciones Unidas para el Desarrollo},
+}
+
+@misc{LK109MANUAL:1,
+    howpublished = {\url{https://www.manualslib.com/manual/1035746/Tkstar-Lk109.html}},
+    title = {TKSTAR LK109 USER MANUAL},
+}
+
+@misc{TK102BMANUAL:1,
+    title = {TK102B Manual.pdf},
+    howpublished = {\url{https://www.munstergps.ie/wp-content/uploads/TK102B-Manual.pdf}},
+}
+
+@misc{CLONES:1,
+    author = {Traccar},
+    howpublished = {\url{https://www.traccar.org/clones/}},
+    title = {Chinese Clones},
+}
+
+@online{PROTOCOLS:1,
+    title = {Protocols},
+    author = {Traccar},
+    archiveprefix = {\url{https://www.traccar.org/protocols/}},
+}

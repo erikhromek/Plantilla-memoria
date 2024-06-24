@@ -24,7 +24,7 @@ Este capítulo presenta una introducción a los conceptos básicos de la temáti
 %----------------------------------------------------------------------------------------
 \section{Planteo básico}
 
-Existen en la actualidad diferentes soluciones en lo que respecta a la prevención o seguridad ciudadana \citep{PNUD:1}. Estos sistemas centralizan información en tiempo real de cámaras de seguridad, móviles de las fuerzas de seguridad, entre otros. Además, suelen incorporar alguna funcionalidad para que un ciudadano, ante una situación de emergencia, pueda dar aviso a las autoridades. El mecanismo para notificar puede ser una aplicación móvil, un dispositivo geolocalizador u otra alternativa pero el objetivo es el mismo.
+Existen en la actualidad diferentes soluciones en lo que respecta a la prevención o seguridad ciudadana \citep{PNUD:1}. Estos sistemas centralizan información en tiempo real de cámaras de seguridad, móviles de las fuerzas de seguridad, entre otros. Además, suelen incorporar alguna funcionalidad para que un ciudadano, ante una situación de emergencia, pueda dar aviso a las autoridades. El mecanismo para notificar puede ser una aplicación móvil, un dispositivo geolocalizador u otra alternativa pero el objetivo es el mismo. En la figura 1.1 se pueden observar los componentes de alto nivel del sistema web y del dispositivo geolocalizador.
 
 \begin{figure}[htbp]
 	\centering
@@ -35,16 +35,16 @@ Existen en la actualidad diferentes soluciones en lo que respecta a la prevenci�
 
 \subsection{Botones antipánico}
 
-Un botón antipánico hace referencia a un dispositivo pequeño y portátil, con una batería, que permite que una persona ante una situación de emergencia, presione el dispositivo para generar una alerta y esta sea recepcionada en un sistema de monitoreo.
+Un botón antipánico hace referencia a un dispositivo pequeño y portátil, alimentado por batería, que permite a una persona, ante una situación de emergencia, presionar un pulsador con el objetivo de generar una alerta y que esta sea recepcionada en un sistema de monitoreo.
 
-Estos dispositivos generalmente son brindados por las autoridades, o también pueden ser brindados por empresas de seguridad privadas. Sus beneficiarios suelen ser:
+Estos dispositivos generalmente son brindados por las autoridades, aunque también también pueden ser provistos por empresas de seguridad privadas. Sus beneficiarios suelen ser:
 \begin{itemize}
 \item Personas en situación de violencia de género.	
 \item Personas en situación de violencia intrafamiliar.
 \item Establecimientos donde pueden ocurrir situaciones de violencia y es necesario dar rápidamente aviso a las autoridades.
 \item Agente o sereno cuyo recorrido debe ser registrado.
-\item Entre otros.
 \end{itemize}
+Entre otros.
 
 Entre sus funcionalidades, suelen poseer:
 \begin{itemize}
@@ -69,7 +69,7 @@ En relación a este trabajo, se planteó el desarrollo del prototipo de un botó
 
 \section{Motivación}
 
-El autor del trabajo ha trabajado anteriormente con este tipo de soluciones, principalmente en la adquisición, configuración, implementación y soporte de botones antipánico disponibles en el mercado. Se detectó y se llegó a la conclusión, respecto a los dispositivos, de que estos presentan los siguientes inconvenientes:
+El autor del trabajo posee experiencia en este tipo de soluciones, principalmente en la adquisición, configuración, implementación y soporte de botones antipánico disponibles en el mercado. Se detectó y se llegó a la conclusión, respecto a los dispositivos, de que estos presentan los siguientes inconvenientes:
 
 \begin{itemize}
 \item Especificaciones de hardware obsoletas.
@@ -83,7 +83,7 @@ El autor del trabajo ha trabajado anteriormente con este tipo de soluciones, pri
 
 Se investigaron y revisaron diferentes alternativas en el mercado, así como también se trabajó con dispositivos utilizados por sistemas de la competencia, llegando a conclusiones similares: no se encuentran dispositivos aceptables cuyo costo sea accesible.
 
-Todas estas cuestiones nombradas anteriormente son las que motivaron la formulación del proyecto, siendo necesario disponer de mínimamente un dispositivo embebido con un conjunto de funcionalidades definidas, y un sistema web que permita recepcionar la información del botón.
+Todas estas cuestiones nombradas anteriormente son las que motivaron la formulación del proyecto, siendo necesario disponer de un dispositivo embebido funcional y un sistema web que permita recepcionar la información del botón.
 
 Otras motivaciones menores del trabajo, pero igualmente muy relacionadas a la especialización, fueron:
 \begin{itemize}
@@ -103,7 +103,7 @@ En relación a los objetivos de alto nivel del trabajo, estos fueron:
 \item Desarrollo de un sistema web a modo de prueba de concepto para el uso del dispositivo.
 \end{itemize}
 
-Respecto a los objetivos por componente, estos fueron:
+Respecto a los objetivos por componente, estos se presentan en la tabla 1.1.
 
 \begin{table}[h]
 	\centering
@@ -127,7 +127,7 @@ Respecto a los objetivos por componente, estos fueron:
 	\label{tab:peces}
 \end{table}
 
-No se incluyeron dentro del alcance del trabajo, las siguientes características:
+No se incluyeron, dentro del alcance del trabajo, las siguientes características:
 
 \begin{itemize}
 \item Aplicación web productiva para gestionar las activaciones del botón antipánico. Por productiva se refiere a que pueda ser ofrecida al mercado o utilizable por usuarios encargados del monitoreo.
@@ -141,17 +141,10 @@ Además, durante el desarrollo del trabajo, se fueron detectando diferentes cues
 
 \section{Soluciones comerciales similares}
 
-Retomando los inconvenientes de soluciones actuales, se presentan a continuación algunos modelos conocidos y utilizados en el mercado local. Estos dos modelos sufren los inconvenientes nombrados en las secciones anteriores: el motivo de fondo es que existen muchos clones de estos modelos, resultando muy difícil determinar si se está trabajando con un dispositivo original o un clon con posibles problemas \citep{CLONES:1}.
+Se presentan a continuación algunos modelos conocidos y utilizados en el mercado local. Estos dos modelos sufren los inconvenientes nombrados en las secciones anteriores: el motivo de fondo es que existen muchos clones de estos modelos, resultando muy difícil determinar si se está trabajando con un dispositivo original o un clon con posibles problemas \citep{CLONES:1}.
 \subsection{LK109}
 
-LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Existe también una versión que trabaja con redes 3G, cuyo costo es superior. Entre sus características más interesantes se encuentran \citep{LK109MANUAL:1}:
-\begin{itemize}
-\item Indicadores de estado: batería, señal de GPS y señal de GSM.
-\item Posibilidad de reportar la ubicación mediante TCP o SMS.
-\item Reporte de ubicación en tiempo real, con una perioricidad configurable.
-\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un parlante.
-\item Autonomía de 240 horas o 10 días.
-\end{itemize}
+LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Existe también una versión que trabaja con redes 3G, cuyo costo es superior. En la figura 1.2 se puede observar el dispositivo en cuestión.
 
 \begin{figure}[H]
 	\centering
@@ -159,17 +152,20 @@ LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y 
 	\caption{Imagen del botón LK109}
 	\label{fig:texmaker}
 \end{figure}
+Entre sus características más interesantes se encuentran \citep{LK109MANUAL:1}:
+\begin{itemize}
+\item Indicadores de estado: batería, señal de GPS y señal de GSM.
+\item Posibilidad de reportar la ubicación mediante TCP o SMS.
+\item Reporte de ubicación en tiempo real, con una perioricidad configurable.
+\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un micrófono.
+\item Autonomía de 240 horas o 10 días.
+\end{itemize}
+
+
 
 \subsection{TK102B}
 
-TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Entre sus características más relevantes se encuentran \citep{TK102BMANUAL:1}:
-\begin{itemize}
-\item Indicadores de estado: batería, señal de GPS y señal de GSM.
-\item Posibilidad de reportar la ubicación mediante TCP o SMS, incluyendo la dirección aproximada, mediante geodecodificación inversa.
-\item Reporte de ubicación en tiempo real, con una periodicidad configurable.
-\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un parlante.
-\item Autonomía de 80 horas o 3 días aproximadamente.
-\end{itemize}
+TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. En la figura 1.3 puede observarse el diseño de este modelo de dispositivo.
 
 \begin{figure}[H]
 	\centering
@@ -178,7 +174,19 @@ TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM
 	\label{fig:texmaker}
 \end{figure}
 
-\begin{table}[h]
+Entre sus características más relevantes se encuentran \citep{TK102BMANUAL:1}:
+\begin{itemize}
+\item Indicadores de estado: batería, señal de GPS y señal de GSM.
+\item Posibilidad de reportar la ubicación mediante TCP o SMS, incluyendo la dirección aproximada, mediante geodecodificación inversa.
+\item Reporte de ubicación en tiempo real, con una periodicidad configurable.
+\item Posibilidad de monitorear de forma remota el entorno del dispositivo mediante un micrófono.
+\item Autonomía de 80 horas o 3 días aproximadamente.
+\end{itemize}
+
+
+Se presentan a continuación las principales características de estos dos modelos, contrastadas:
+
+\begin{table}[H]
 	\centering
 	\caption[Tabla comparativa]{Tabla comparativa de los dos modelos}
 	\begin{tabular}{l c c}    
@@ -186,10 +194,10 @@ TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM
 		\textbf{Característica} 	 & \textbf{LK109} & \textbf{TK102B}	  \\
 		\midrule
 		Conectividad & GSM, GPRS, SMS & 	GSM, GPRS, SMS			\\		
-		Reporte periódico & Si & Si			\\
+		Reporte periódico & Sí & Sí			\\
 		Autonomía (horas) & 240 & 80		\\
-		Indicadores de estado & Si & Si \\
-		Escucha remota & Si & Si \\
+		Indicadores de estado & Sí & Sí \\
+		Escucha remota & Sí & Sí \\
 		Protocolo de comunicación & h02 & gps103 \\
 		\bottomrule
 		\hline
@@ -197,13 +205,11 @@ TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM
 	\label{tab:peces}
 \end{table}
 
-Respecto al ítem de autonomía, no se ha podido comprobar en la práctica que la duración sea la indicada (siempre es mucho menor, entre 12 y 24 horas), a excepción del uso mediante \textit{sleep} o ahorro de batería, que no tiene utilidad para las aplicaciones de seguimiento de una persona. Esto es debido a que en el modo de ahorro de batería, la ubicación se actualiza posterior al envío de una alerta y no antes, resultando ínutil la ubicación reportada.
+Respecto al ítem de autonomía, no se ha podido comprobar en la práctica que la duración sea la indicada (siempre es mucho menor, entre 12 y 24 horas), a excepción del uso mediante \textit{sleep} o ahorro de batería, que no tiene utilidad para las aplicaciones de seguimiento de una persona. Esto es debido a que, en el modo de ahorro de batería, la ubicación se actualiza posterior al envío de una alerta y no antes, resultando inútil la ubicación reportada.
 
-En relación al ítem de escucha remota, es decir la posibilidad de escuchar lo que ocurre alrededor del dispositivo, no se ha podido verificar para varios dispositivos; de todas maneras no resulta, al menos para los casos de uso reales, una funcionalidad atractiva. Las funcionalidades que se deben cumplir y validar a rajatabla son:
+En relación al ítem de escucha remota, es decir la posibilidad de escuchar lo que ocurre alrededor del dispositivo, no se ha podido verificar para varios dispositivos; de todas maneras no resulta una funcionalidad útil en la mayoría de los casos de uso. Las características que se deben cumplir y validar obligatoriamente son:
 \begin{itemize}
 	\item Precisión al momento de obtener la ubicación.
 	\item Autonomía considerable de la batería.
 	\item Rapidez para obtener señal de GSM y GNSS.
 \end{itemize}
-
-Por este motivo, es que no se intentó entre los objetivos iniciales ir más allá de las características iniciales.
