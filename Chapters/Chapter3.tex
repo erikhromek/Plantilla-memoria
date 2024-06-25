@@ -59,7 +59,7 @@ Se pueden identificar los siguientes componentes:
 \begin{itemize}
 	\item En primer lugar, se observa a un usuario del dispositivo embebido, que es el componente que envía alertas mediante SMS hacia el servicio en la nube de Twilio.
 	\item En segundo lugar, se encuentra el servicio de Twilio, que recepciona los mensajes recibidos y los reenvía mediante un \textit{webhook} hacia el servicio web o \textit{backend}. La comunicación entre el dispositivo embebido y Twilio fue posible ya que en este último se contrató un número teléfonico para la recepción de los SMS. 
-	\item En tercer lugar, el \textit{backend}, que es el componente encargado de la recepción de alertas, procesamiento y almacenamiento de datos y comunicación con el \textit{frontend}. Fue desarrollado con el \textit{framework} Django, en Python.
+	\item En tercer lugar, el \textit{backend}, que es el componente encargado de la recepción de alertas, procesamiento y almacenamiento de datos y comunicación con el \textit{frontend}. Fue desarrollado con el framework Django, en Python.
 	\item A continuación, se ubica el \textit{frontend}, que es la aplicación web que se encarga de toda la interacción del usuario operador con el sistema, incluyendo carga de datos y gestión de alertas. Consiste en una \textit{Single Page Application } y su desarrollo fue realizado en Angular, cuyo lenguaje es TypeScript\citep{ANGULAR:1}.
 	\item Por último lugar, se encuentra un componente menor, pero no menos importante que es la base de datos encargada de almacenar toda la información del sistema, como usuarios, alertas, tipos de alertas, entre otros. El motor elegido fue PostgreSQL, descrito en el capítulo anterior.
 \end{itemize}
@@ -87,29 +87,29 @@ Estas dos bibliotecas fueron importadas al proyecto como \textit{managed compone
 		\toprule
 		\textbf{Bibilioteca} & \textbf{Uso} \\
 		\midrule
-		\makecell{\textit{iot\_button.h}} & \makecell{Implementación del botón pulsador y acciones \\ a tomar al momento de ser usado } 	\\
+		\makecell[l]{\textit{iot\_button.h}} & \makecell{Implementación del botón pulsador y acciones \\ a tomar al momento de ser usado } 	\\
 		\hline
-		\makecell{\textit{nmea.h}}	 & \makecell{Lectura de mensajes NMEA recibidos por el módulo GPS} 	\\		
+		\makecell[l]{\textit{nmea.h}}	 & \makecell{Lectura de mensajes NMEA recibidos por el módulo GPS} 	\\		
 		\hline
-		\makecell{\textit{string.c}}  & \makecell{Manipulación y transformación de cadenas de texto \\ al momento de leer mensajes recibidos de los módulos}  \\
+		\makecell[l]{\textit{string.c}}  & \makecell{Manipulación y transformación de cadenas de texto \\ al momento de leer mensajes recibidos de los módulos}  \\
 		\hline	
-		\makecell{\textit{ctype.c}}  & \makecell{Uso de funciones comunes de C \\ para trabajar sobre caracteres de texto }  \\
+		\makecell[l]{\textit{ctype.c}}  & \makecell{Uso de funciones comunes de C \\ para trabajar sobre caracteres de texto }  \\
 		\hline
-		\makecell{\textit{uart.h}}	 & \makecell{Comunicación con los módulos GSM y GPS \\ mediante puerto serie}	\\
+		\makecell[l]{\textit{uart.h}}	 & \makecell{Comunicación con los módulos GSM y GPS \\ mediante puerto serie}	\\
 		\hline	
-		\makecell{\textit{esp\_system.h}} &  Funciones básicas del ESP-IDF\\
+		\makecell[l]{\textit{esp\_system.h}} &  Funciones básicas del ESP-IDF\\
 		\hline
-		\makecell{\textit{esp\_log.h}} &  Visualización de errores y mensajes de \textit{debug} del firmware \\
+		\makecell[l]{\textit{esp\_log.h}} &  Visualización de errores y mensajes de \textit{debug} del firmware \\
 		\hline
-		\makecell{\textit{esp\_pm.h} \\ \textit{esp\_sleep.h}} & Configuraciones de ahorro de energía \\
+		\makecell[l]{\textit{esp\_pm.h} \\ \textit{esp\_sleep.h}} & Configuraciones de ahorro de energía \\
 		\hline
-		\makecell{\textit{adc\_oneshot.h} \\ \textit{adc/adc\_cali.h} \\ \textit{adc\_cali\_scheme.h}}  & \makecell{Conversión del módulo analógico-digital y lectura \\ de valores para calcular la carga de la batería} \\
+		\makecell[l]{\textit{adc\_oneshot.h} \\ \textit{adc/adc\_cali.h} \\ \textit{adc\_cali\_scheme.h}}  & \makecell{Conversión del módulo analógico-digital y lectura \\ de valores para calcular la carga de la batería} \\
 		\hline
-		\makecell{\textit{nvs.h} \\ \textit{nvs\_flash.h}} &  \makecell{Almacenamiento \textit{flash} para guardar datos  en la \\ memoria no volátil, como la última posición válida} \\
+		\makecell[l]{\textit{nvs.h} \\ \textit{nvs\_flash.h}} &  \makecell{Almacenamiento \textit{flash} para guardar datos  en la \\ memoria no volátil, como la última posición válida} \\
 		\hline
-		\makecell{\textit{freertos/FreeRTOS.h}} & Configuración del sistema operativo en tiempo real \\
+		\makecell[l]{\textit{freertos/FreeRTOS.h}} & Configuración del sistema operativo en tiempo real \\
 		\hline
-		\makecell{\textit{freertos/task.h}} & Implementación de procesos/tareas \\
+		\makecell[l]{\textit{freertos/task.h}} & Implementación de procesos/tareas \\
 		
 		\bottomrule
 		\hline
@@ -127,14 +127,7 @@ Para el desarrollo, compilación, pruebas y monitoreo, se trabajó con el entorn
 	\label{fig:esp32:diagrama}
 \end{figure}
 
-Adicionalmente a los dispositivos originalmente elegidos, se incorporó un regulador de tensión LM2596 en la entrada de energía de la batería no contemplado originalmente, que permite adecuar el voltaje de entrada de 4.2 V a 3.3 V\citep{LM2596:1}, requeridos por el ESP32 y el NEO-6M. Además, se incorporó una antena activa para el módulo GPS ya con una antena pasiva la precisión de la localización obtenida era baja o tomaba más tiempo del esperado. Por otra parte, se reemplazó la antena helicoidal del módulo GSM por una con formato PCB y 3dBi de ganancia. Se muestra a continuación, en la figura \ref{fig:esp32:fisico} la implementación física del prototipo en una placa de pruebas:
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{./Figures/esp32-fisico.jpg}
-	\caption{Esquema de componentes de hardware del ESP32}
-	\label{fig:esp32:fisico}
-\end{figure}
+Adicionalmente a los dispositivos originalmente elegidos, se incorporó un regulador de tensión LM2596 en la entrada de energía de la batería no contemplado originalmente, que permite adecuar el voltaje de entrada de 4.2 V a 3.3 V\citep{LM2596:1}, requeridos por el ESP32 y el NEO-6M. Además, se incorporó una antena activa para el módulo GPS ya con una antena pasiva la precisión de la localización obtenida era baja o tomaba más tiempo del esperado. Por otra parte, se reemplazó la antena helicoidal del módulo GSM por una con formato PCB y 3dBi de ganancia.
 
 
 \subsection{Tareas del dispositivo embebido}
@@ -239,7 +232,7 @@ Además, se intentó aplicar un manejo tanto manual como automático (configurab
 
 \section{Desarrollo de módulo de backend}
 
-El \textit{backend} fue desarrollado con el framework Django y Python. Para todas las funcionalidades, se estructuró el proyecto siguiendo los lineamientos de Django, que consiste en principalmente dividir la aplicación en módulos web por temática o características. Para el caso de esta aplicación, se identificaron dos módulos:
+Para el desarrollo de la aplicación \textit{backend} y sus funcionalidades, se estructuró el proyecto siguiendo los lineamientos de Django, que consiste en principalmente dividir la aplicación en módulos web por temática o características. Para el caso de esta aplicación, se identificaron dos módulos:
 \begin{itemize}
 	\item \textit{Users}: para englobar toda la funcionalidad referida a usuarios.
 	\item \textit{Alerts}: para englobar toda la funcionalidad referida a beneficiarios y alertas.
@@ -272,25 +265,25 @@ Para la implementación, se incorporaron varias bibliotecas externas, cuyo aport
 		\toprule
 		\textbf{Bibilioteca} & \textbf{Uso} \\
 		\midrule
-		\makecell{\textit{djangorestframework}}	 & \makecell{Biblioteca de Django para \\ el desarrollo de APIs REST} 	\\		
+		\makecell[l]{\textit{djangorestframework}}	 & \makecell{Biblioteca de Django para \\ el desarrollo de APIs REST} 	\\		
 		\hline
-		\makecell{\textit{psycopg}}  & \makecell{Biblioteca para conexión a PostgreSQL\citep{DJANGO:4}}  \\
+		\makecell[l]{\textit{psycopg}}  & \makecell{Biblioteca para conexión a PostgreSQL\citep{DJANGO:4}}  \\
 		\hline	
-		\makecell{\textit{django-twilio}}  & \makecell{Biblioteca oficial de Twilio\citep{DJANGO:3} \\ para comunicación con \textit{Twilio Messaging Services} }  \\
+		\makecell[l]{\textit{django-twilio}}  & \makecell{Biblioteca oficial de Twilio\citep{DJANGO:3} \\ para comunicación con \textit{Twilio Messaging Services} }  \\
 		\hline
-		\makecell{\textit{channels}}	 & \makecell{Biblioteca para la implementación \\ de WebSockets en Django\citep{DJANGO:5}}	\\
+		\makecell[l]{\textit{channels}}	 & \makecell{Biblioteca para la implementación \\ de WebSockets en Django\citep{DJANGO:5}}	\\
 		\hline	
-		\makecell{\textit{djangorestframework-simplejwt}} &  \makecell{Biblioteca para el \textit{middleware}  \\ de autenticación mediante tokens JWT} \\
+		\makecell[l]{\textit{djangorestframework-simplejwt}} &  \makecell{Biblioteca para el \textit{middleware}  \\ de autenticación de usuarios} \\
 		\hline
-		\makecell{\textit{drf\_yasg}} &  \makecell{Biblioteca para generar \\ documentación de API en Swagger} \\
+		\makecell[l]{\textit{drf\_yasg}} &  \makecell{Biblioteca para generar \\ documentación de API en Swagger} \\
 		\hline
-		\makecell{\textit{uvicorn}} & Servidor web ASGI para Python\citep{DJANGO:7} \\
+		\makecell[l]{\textit{uvicorn}} & Servidor web ASGI para Python\citep{DJANGO:7} \\
 		\hline
-		\makecell{\textit{django-cors-headers}}  & \makecell{\textit{Middleware} para incorpora  \\ encabezados en las peticiones de la API} \\
+		\makecell[l]{\textit{django-cors-headers}}  & \makecell{\textit{Middleware} para incorpora  \\ encabezados en las peticiones de la API} \\
 		\hline
-		\makecell{\textit{dj-database-url}} &  \makecell{Biblioteca para conectarse \\ a base de datos PostgreSQL de Heroku} \\
+		\makecell[l]{\textit{dj-database-url}} &  \makecell{Biblioteca para conectarse \\ a base de datos PostgreSQL de Heroku} \\
 		\hline
-		\makecell{\textit{django-channels-jwt}} & \textit{Middleware} para autenticación de WebSockets \\
+		\makecell[l]{\textit{django-channels-jwt}} & \textit{Middleware} para autenticación de WebSockets \\
 		\bottomrule
 		\hline
 	\end{tabular}
@@ -325,7 +318,7 @@ Se describen a continuación los componentes de mayor relevancia de los módulos
 	\caption{Serializador de la entidad \textit{Beneficiary}}
 	\label{backend:view1}
     \end{figure}
-    \item Consumidores: representa un servicio de WebSockets que permite obtener una alerta entrante en tiempo real.
+    \item Consumidores: representa un servicio de WebSockets que permite obtener una alerta nueva en tiempo real.
     \item \textit{Middlewares}: clases que permiten interceptar peticiones hacia la API\citep{DJANGO:10} y realizar comprobaciones como ver el rol del usuario, o que este tenga la correcta autorización en las peticiones. No se desarrolló ningún \textit{middleware} sino que se utilizaron bibliotecas externas ya provistas.
     \item Señales: hace referencia a una notificación que se genera dentro de la aplicación ante un evento\citep{DJANGO:11}. En el marco de esta aplicación, cuando se almacena una nueva alerta, se genera una señal que notifica en tiempo real mediante \textit{WebSockets} el dato creado.
 \end{itemize}
@@ -399,13 +392,156 @@ Todos estos servicios fueron documentados mediante Swagger, una herramienta para
 	\label{backend:settings1}
 \end{figure}
 
-
-
 \section{Desarrollo de módulo de frontend}
+
+El desarrollo de la aplicación web en \textit{Angular} se estructuró siguiendo la estructura estándar del framework\citep{ANGULAR:4}, la cual se puede apreciar en la figura \ref{frontend:folder}:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./Figures/frontend-folder.png}
+	\caption{Estructura del \textit{frontend}}
+	\label{frontend:folder}
+\end{figure}
+
+Respecto al uso de cada carpeta, se pueden describir los más relevantes de la aplicación:
+\begin{itemize}
+	\item \textit{pages}: corresponde a componentes que representan vistas enteras o secciones de la aplicación web.
+	\item \textit{components}: corresponde con componentes invocados dentro de las páginas, como son los \textit{modals} o ventanas de carga de datos, el \textit{layout} o estructura base de la interfaz, y otros componentes.
+	\item \textit{stores}: clases que encapsulan datos y funcionan como una fuente de datos única para toda la aplicación\citep{NGRX:1}.
+	\item \textit{services}: clases que encapsulan el acceso a diferentes métodos del \textit{backend} para cada una de las entidades.
+	\item \textit{models}: definición de interfaces para representar los modelos de datos.
+	\item \textit{guards}: corresponde con clases que permiten limitar o no el acceso a una vista.
+	\item \textit{interceptors}:	representa clases que interceptan llamadas HTTP y la comunicación de datos con el \textit{backend} para aplicar transformaciones de datos.
+	\item \textit{pipes}: los \textit{pipes} son clases que transforman la representación de objetos o datos hacia el usuario, como por ejemplo cambiar el formato de fecha y hora\citep{ANGULAR:5}.
+\end{itemize}
+
+La implementación de la estructura, diseño de componentes, visualización de formularios, entre otros componentes gráficos, contó con el uso de la biblioteca de estilos \textit{Angular Material} y con el uso de uno de los temas por defecto de la biblioteca. Toda la estructura se organizó solamente utilizando \textit{flexbox}, un método de diseño de páginas propio de \textit{CSS}, el lenguaje de estilos de los documentos web\citep{CSS:1}. No se contempló la necesidad de incorporar alguna herramienta o biblioteca para estructuras complejas, como por ejemplo \textit{Boostrap} que contiene un sistema de grilla\citep{BOOTSTRAP:1}, debido a que las páginas y secciones de la aplicación web son simples.
+
+En relación a las páginas implementadas, se desarrollaron las rutas descritas en la tabla \ref{tab:frontend:pages}:
+
+\begin{table}[H]
+	\centering
+	\caption[\textit{Servicios}]{\textit{Endpoints} implementados}
+	\begin{tabular}{l c}    
+		\toprule
+		\textbf{\textit{Endpoint}} 	 & \textbf{Descripción} \\
+		\midrule
+		\textit{/login} & Sección de login  \\	
+		\textit{/register} & Sección de registro de un nuevo usuario \\		
+		\textit{/map} & Vista de mapa con las últimas alertas recibidas  \\
+		\textit{/beneficiaries} & Listado de beneficiarios  \\	
+		\textit{/beneficiary-types} & Listado de tipos de beneficiarios  \\		
+		\textit{/alerts} & Listado de alertas  \\
+		\textit{/alert-types} & Listado de tipos de alertas  \\		
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:frontend:pages}
+\end{table}
+
+\subsection{Particularidades del desarrollo}
+
+En relación al manejo de datos desde la aplicación, se implementó en el \textit{frontend} un patrón de manejo de estado para las entidades del sistema denominado \textit{Store}, inspirado en patrones más complejos como Redux, que surgieron para simplificar el manejo de estados en aplicaciones de usuario cada vez más complejas. En el marco de esta aplicación, se utiliza el \textit{Store} para almacenar y encapsular el acceso a las entidades, desde una única fuente de datos, compartida por todos los componentes del sistema, secciones, \textit{popups}, etc.\citep{ANGULAR:6}. Para esto, se generó un \textit{store} por cada modelo deseado y toda interacción de los componentes con datos, y comunicación de componentes que implican datos, fue eliminada, ya que se realiza mediante el \textit{store} de cada entidad.
+
+Debido a que todas las peticiones hacia el \textit{backend}, a excepción del registro y login, requieren inluir un encabezado de autorización en la petición junto con el token JWT, se implemento un interceptor llamado \texttt{authGuard} que toma cualquier petición, y le incorpora el token de autorización almacenado en el almacenamiento local del navegador cliente. En la figura \ref{frontend:interceptor} se visualiza la implementación del interceptor:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/frontend-interceptor.png}
+	\caption{Estructura del \textit{frontend}}
+	\label{frontend:interceptor}
+\end{figure}
+
+Adicionalmente, este \textit{interceptor} se utilizó para resolver una problemática que existe entre aplicaciones que están desarrolladas con diferentes convenciones de código. En este caso, el \textit{backend} fue desarrollado en Python, que sigue la convención \textit{snake case} para nombrar las variables, y el \textit{frontend} fue desarrollado en TypeScript, que sigue la convención de \textit{camel case}\citep{CODE:1}. En la figura \ref{frontend:snake-case} se observa mejor la diferencia que hay, lo que impide asociar de manera automática las propiedades de los datos enviados entre \textit{backend} y \textit{frontend}. Para esto, se implementaron 2 bibliotecas que convierten automáticamente los datos salientes y entrantes a la convención deseada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/snake-case.png}
+	\caption{Comparativa entre \textit{snake case} y \textit{camel case}}
+	\label{frontend:snake-case}
+\end{figure}
+
+Por último, otra característica particular del desarrollo fue la incorporación de un mecanismo de \textit{exponential backoff} para el establecimiento de la conexión mediante WebSockets ya que se encontraron algunos problemas durante la conexión segura por WS con el token efímero utilizado. En ciertas ocasiones, el token era marcado como inválido por el \textit{backend}, lo que impedía establecer la conexión, requieriendo refrescar la aplicación y volver a probar establecer la conexión. Para esto, se incorporó una biblioteca para los reintentos de conexión separados por un tiempo determinado por este algoritmo, que aumenta el tiempo entre peticiones entre cada falla\citep{BACKOFF:1}.
+
+Este problema ocurre con el \textit{middleware} utilizado en el \textit{backend} ya que es una biblioteca de terceros y aparenta tener errores espontáneos al momento de determinar si el token es válido o no.
+
+
+En la tabla \ref{tab:frontend-libraries} se listan las principales bibliotecas importadas para el desarrollo del \textit{frontend}: 
+
+\begin{table}[H]
+	\centering
+	\caption[\textit{Bibliotecas importadas}]{Bibliotecas de terceros utilizadas}
+	\begin{tabular}{l c c}    
+		\toprule
+		\textbf{Biblioteca} & \textbf{Descripción} \\
+		\midrule
+		\textit{\makecell[l]{leaflet \\ @asymmetrik/ngx-leaflet}} & \makecell{Implementación del mapa de alertas\\ y funcionalidad asociada a este}  \\
+		\hline
+		\textit{\makecell[l]{rxjs}} & \makecell{ Implementación de métodos asíncronos \\ para gestión de eventos }  \\
+		\hline
+		\textit{\makecell[l]{@ngrx}} & \makecell{ Implementación de manejo \\ de estado y datos }	\\
+		\hline
+		\textit{\makecell[l]{@ngrx/operators \\ @ngrx/signals}} & \makecell{Importación de operadores de \textit{NgRx} \\ para el manejo de estado}  \\
+		\hline
+		\textit{\makecell[l]{backoff-rxjs}} & \makecell{Implementación de reconexión en \\ \textit{WebSockets} ante errores } \\
+		\hline
+		\textit{\makecell[l]{camelcase-keys \\ snakecase-keys}} & \makecell{ Conversión de formato de datos enviados \\ entre \textit{backend} y \textit{frontend} }	\\
+		\hline
+		\textit{\makecell[l]{express}} & \makecell{Implementación de servidor  para servir el \textit{frontend}}  \\
+		\hline
+		\textit{\makecell[l]{mat-table-exporter}} & Funciones de exportación de tablas  \\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:frontend-libraries}
+\end{table}
+
+
 
 \section{Integración}
 
-Resulta importante destacar que toda la interacción entre el \textit{backend} y \textit{frontend} es realizada mediante \textit{endpoints} HTTP y \textit{WebSockets} para comunicación en tiempo real, utilizando TLS/SSL para securizar las conexiones. 
+El esquema de integración del sistema puede dividirse en tres etapas:
+\begin{itemize}
+	\item Integración entre sistema embebido y Twilio.
+	\item Integración entre Twilio y \textit{backend}.
+	\item Integración entre \textit{backend} y \textit{frontend}.
+\end{itemize}
 
-Por el lado del despliegue, los componentes web se desplegaron en la nube de Heroku mediante el uso de \textit{dynos} básicos, que son contenedores de aplicaciones web\citep{HEROKU:1}, y para la base de datos, se utilizó un \textit{addon} de PostgreSQL, que consiste en un complemento que permite incorporar una base de datos como SaaS u otros componentes requeridos por los sistemas, como pueden ser bases de datos en memoria o brókers\citep{HEROKU:2}.
+Respecto a la integración entre el sistema embebido y Twilio, se realiza únicamente mediante mensajes de texto. Se puede observar esta interacción que hay en la figura \ref{integracion:1}. El dispositivo embebido sabe cuál es el número de teléfono configurado para la recepción de alertas ya que es configurable mediante un SMS, cuyo contenido debe incluir como clave la parte de un número de identificación único por cada módulo GSM, denominado IMEI\citep{IMEI:1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/integracion-1.png}
+	\caption{Esquema de integración entre botón antipánico y Twilio}
+	\label{integracion:1}
+\end{figure}
+
+Al momento de integrar el \textit{backend}, \textit{frontend}, bases de datos y servicios externos, se disponibilizó el sistema en un entorno \textit{cloud}. Loss componentes web se desplegaron en la nube de Heroku mediante el uso de \textit{dynos} básicos, que son contenedores de aplicaciones web\citep{HEROKU:1}, y para la base de datos, se utilizó un \textit{addon} de PostgreSQL, que consiste en un complemento que permite incorporar una base de datos como SaaS u otros componentes requeridos por los sistemas, como pueden ser bases de datos en memoria o brókers\citep{HEROKU:2}. Al momento de desplegar, fueron asignadas dos URLs, una para el frontend y otra para la API, permitiendo que el \textit{frontend} y Twilio apunten a la API correctamente.
+
+Para la integración entre la API y Twilio, se implementó un único servicio del tipo \textit{webhook} para que Twilio notifique en tiempo real la llegada de una nueva alerta. Para poder securizar las ejecuciones del \textit{webhook} y asegurarse de que sea ejecutado solamente por los sistemas de Twilio, se utilizó el esquema de seguridad provisto por Twilio. Cuando Twilio realiza una petición hacia una API, incluye dos parámetros en el cuerpo de la petición\ref{TWILIO:2}:
+\begin{itemize}
+	\item \texttt{ACCOUNT\_SID}: identificador de la cuenta de Twilio.
+	\item \texttt{AUTH\_TOKEN}: credencial para autenticación, única por cada cuenta.
+\end{itemize}
+
+Por este motivo, toda interacción debe realizarse bajo HTTPS o se corre el riesgo de que puedan filtrarse las credenciales enviadas como parámetros de la petición. El backend utiliza estas credenciales y las compara con las credenciales configuradas como variables y determina si quién está realizando la llamada al \textit{webhook} es legítimo y procesa la petición. En la figura \ref{integracion:2} se puede ver la interacción entre Twilio y el \textit{backend}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/integracion-1.png}
+	\caption{Esquema de integración entre Twilio y la API}
+	\label{integracion:2}
+\end{figure}
+
+
+Por último, en relación a la comunicación entre el \textit{frontend} del usuario y la API, toda la interacción entre el \textit{backend} y \textit{frontend} es realizada mediante \textit{endpoints} HTTP y \textit{WebSockets} para comunicación en tiempo real, utilizando TLS/SSL para securizar las conexiones. Además, para poder autorizar cada petición HTTP, el usuario debe incluir un \textit{JSON Web Token} o JWT en el encabezado de esta, que es un mensaje con formato estandarizado utilizado principalmente para autorización\citep{JWT:1}. Este token es generado por el usuario al momento de loguearse en el sistema web.
+
+Para el caso de la conexión mediante \textit{WebSockets} o WS, usada para recibir nuevas alertas en tiempo real, se implementó otro mecanismo de autorización debido a la imposibilidad de incluir encabezados en las peticiones o conexiones. Se incorporó un \textit{endpoint} que permite que el usuario genere un token efímero de uso único para cada conexión de WS. Este token se envía como parámetro al momento de iniciar la conexión y tiene validez mientras se mantenga la conexión establecida. En la figura \ref{integracion:3} se observan los mecanismos de comunicación entre el \textit{frontend} y backend.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/integracion-1.png}
+	\caption{Esquema de integración entre \textit{frontend} y la API}
+	\label{integracion:3}
+\end{figure}
 
