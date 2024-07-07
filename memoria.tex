@@ -27,6 +27,15 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{float}
 \usepackage{makecell}
 
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  sensitive=true
+}
+
 %----------------------------------------------------------------------------------------
 %	INFORMACIÓN DE LA MEMORIA
 %----------------------------------------------------------------------------------------
@@ -50,7 +59,7 @@ headsepline, % Uncomment to get a line under the header
 \juradoTRES{Mg. Ing. Gonzalo Sanchez (FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur3name
 
 %\ciudad{Ciudad Autónoma de Buenos Aires}
-\ciudad{Ciudad de Quilmes}
+\ciudad{ciudad de Quilmes}
 
 \fechaINICIO{agosto de 2023}
 \fechaFINAL{agosto de 2024}
@@ -90,7 +99,11 @@ Para su desarrollo se aplicaron gran parte de los conocimientos adquiridos en la
 %\addchaptertocentry{\acknowledgementname} % Descomentando esta línea se puede agregar los agradecimientos al índice
 \vspace{1.5cm}
 
+A mi familia, por estar en todo momento.
 
+Al cuerpo docente y no docente de la carrera de especialización, por su dedicación y acompañamiento durante la cursada y el trabajo final.
+
+A mi director, Mg. Ing. Lucas Dórdolo, por todo el apoyo y ayuda para el desarrollo del trabajo.
 
 \end{acknowledgements}
 
@@ -136,7 +149,7 @@ Para su desarrollo se aplicaron gran parte de los conocimientos adquiridos en la
 % Incluir los apéndices de la memoria como archivos separadas desde la carpeta Appendices
 % Descomentar las líneas a medida que se escriben los apéndices
 
-%\include{Appendices/AppendixA}
+\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 

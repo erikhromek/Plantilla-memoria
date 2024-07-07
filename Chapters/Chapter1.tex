@@ -19,7 +19,7 @@
 
 %\section{Introducción}
 
-Este capítulo presenta una introducción a los conceptos básicos de la temática del trabajo y explica las principales causas que motivaron el desarrollo del proyecto, junto con los objetivos que se buscaron alcanzar.
+Este capítulo presenta una introducción a los conceptos básicos de la temática del trabajo y explica las principales causas que motivaron el desarrollo del trabajo, junto con los objetivos que se buscaron alcanzar.
 
 %----------------------------------------------------------------------------------------
 \section{Planteo básico}
@@ -29,7 +29,7 @@ Existen en la actualidad diferentes soluciones en lo que respecta a la prevenci�
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.9\textwidth]{./Figures/diagBloques.png}
-	\caption{Diagrama en bloques del dispositivo y el sistema web}
+	\caption{Diagrama en bloques del dispositivo y el sistema web.}
 	\label{fig:texmaker}
 \end{figure}
 
@@ -37,7 +37,7 @@ Existen en la actualidad diferentes soluciones en lo que respecta a la prevenci�
 
 Un botón antipánico hace referencia a un dispositivo pequeño y portátil, alimentado por batería, que permite a una persona, ante una situación de emergencia, presionar un pulsador con el objetivo de generar una alerta y que esta sea recepcionada en un sistema de monitoreo.
 
-Estos dispositivos generalmente son brindados por las autoridades, aunque también también pueden ser provistos por empresas de seguridad privadas. Sus beneficiarios suelen ser:
+Estos dispositivos generalmente son brindados por las autoridades, aunque también pueden ser provistos por empresas de seguridad privadas. Sus beneficiarios suelen ser:
 \begin{itemize}
 \item Personas en situación de violencia de género.	
 \item Personas en situación de violencia intrafamiliar.
@@ -59,7 +59,7 @@ Un detalle interesante respecto a estos dispositivos es que generalmente se come
 
 \begin{itemize}
 \item Dispositivo personal: dispositivo embebido que puede ser llevado como colgante, en la muñeca o en el bolsillo. Tiene una autonomía limitada.
-\item Dispositivo para móviles: también conocido como AVL o \textit{Automatic Vehicle Location}; además de contar con antenas externas para mayor precisión, cuenta con cables para conexión a la batería de los vehículos, permitiendo tener una mayor autonomía.
+\item Dispositivo para móviles: también conocido como AVL o \textit{Automatic Vehicle Location}; además de contar con antenas externas para mayor precisión, cuenta con cables para conexión a la batería de los vehículos, lo que permite tener una mayor autonomía.
 \end{itemize}
 
 
@@ -81,7 +81,7 @@ El autor del trabajo posee experiencia en este tipo de soluciones, principalment
 \item Nulas características de seguridad.
 \end{itemize}
 
-Se investigaron y revisaron diferentes alternativas en el mercado, así como también se trabajó con dispositivos utilizados por sistemas de la competencia, llegando a conclusiones similares: no se encuentran dispositivos aceptables cuyo costo sea accesible.
+Se investigaron y revisaron diferentes alternativas en el mercado, así como también se trabajó con dispositivos utilizados por sistemas de la competencia y se arribó a conclusiones similares: no se encuentran dispositivos aceptables cuyo costo sea accesible.
 
 Todas estas cuestiones nombradas anteriormente son las que motivaron la formulación del proyecto, siendo necesario disponer de un dispositivo embebido funcional y un sistema web que permita recepcionar la información del botón.
 
@@ -103,11 +103,10 @@ En relación a los objetivos de alto nivel del trabajo, estos fueron:
 \item Desarrollo de un sistema web a modo de prueba de concepto para el uso del dispositivo.
 \end{itemize}
 
-Respecto a los objetivos por componente, estos se presentan en la tabla 1.1.
-
+Respecto a los objetivos por componente, estos se presentan en la tabla \ref{tab:objetivos-iniciales}.
 \begin{table}[h]
 	\centering
-	\caption[Resumen de objetivos]{Resumen de objetivos del trabajo}
+	\caption[Resumen de objetivos del trabajo.]{Resumen de objetivos del trabajo.}
 	\begin{tabular}{l c c}    
 		\toprule
 		\textbf{Componente} 	 & \textbf{Objetivo} 	  \\
@@ -124,34 +123,37 @@ Respecto a los objetivos por componente, estos se presentan en la tabla 1.1.
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:objetivos-iniciales}
 \end{table}
 
 No se incluyeron, dentro del alcance del trabajo, las siguientes características:
 
 \begin{itemize}
 \item Aplicación web productiva para gestionar las activaciones del botón antipánico. Por productiva se refiere a que pueda ser ofrecida al mercado o utilizable por usuarios encargados del monitoreo.
-\item Desarrollo de un dispositivo listo para reemplazar dispositivos existentes, es decir que no sea un prototipo.
+\item Desarrollo de un dispositivo listo para reemplazar dispositivos existentes, es decir, que no sea un prototipo.
 \item Desarrollo de un contenedor físico para el dispositivo.
 \end{itemize}
 
-Además, durante el desarrollo del trabajo, se fueron detectando diferentes cuestiones técnicas a resolver, que modificaron algunos objetivos planteados inicialmente.
+Además, durante el desarrollo del trabajo se fueron detectando diferentes cuestiones técnicas a resolver, que modificaron algunos objetivos planteados inicialmente.
 
 %----------------------------------------------------------------------------------------
 
 \section{Soluciones comerciales similares}
 
-Se presentan a continuación algunos modelos conocidos y utilizados en el mercado local. Estos dos modelos sufren los inconvenientes nombrados en las secciones anteriores: el motivo de fondo es que existen muchos clones de estos modelos, resultando muy difícil determinar si se está trabajando con un dispositivo original o un clon con posibles problemas \citep{CLONES:1}.
-\subsection{LK109}
+Se presentan a continuación algunos modelos conocidos y utilizados en el mercado local. Estos dos modelos sufren los inconvenientes nombrados en las secciones anteriores: el motivo de fondo es que existen muchos clones de estos modelos y resulta muy difícil determinar si se está trabajando con un dispositivo original o un clon con posibles problemas \citep{CLONES:1}.
+\subsection{Dispositivo LK109}
 
-LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Existe también una versión que trabaja con redes 3G, cuyo costo es superior. En la figura 1.2 se puede observar el dispositivo en cuestión.
+LK109 es el nombre de un dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. Existe también una versión que trabaja con redes 3G, cuyo costo es superior. En la figura \ref{fig:botonlk109} se puede observar el dispositivo en cuestión.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{./Figures/lk109.jpg}
-	\caption{Imagen del botón LK109}
-	\label{fig:texmaker}
+	\caption{Imagen del botón LK109.}
+	\label{fig:botonlk109}
 \end{figure}
+
+\pagebreak
+
 Entre sus características más interesantes se encuentran \citep{LK109MANUAL:1}:
 \begin{itemize}
 \item Indicadores de estado: batería, señal de GPS y señal de GSM.
@@ -163,15 +165,15 @@ Entre sus características más interesantes se encuentran \citep{LK109MANUAL:1}
 
 
 
-\subsection{TK102B}
+\subsection{Dispositivo TK102B}
 
-TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. En la figura 1.3 puede observarse el diseño de este modelo de dispositivo.
+TK102B es el nombre de otro dispositivo geolocalizador que trabaja con redes GSM y GPRS, y usa \textit{Global Positioning System} (GPS) como sistema de GNSS. En la figura \ref{fig:botontk102b} puede observarse el diseño de este modelo de dispositivo.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{./Figures/tk102b.jpg}
-	\caption{Imagen del botón TK102B}
-	\label{fig:texmaker}
+	\caption{Imagen del botón TK102B.}
+	\label{fig:botontk102b}
 \end{figure}
 
 Entre sus características más relevantes se encuentran \citep{TK102BMANUAL:1}:
@@ -183,12 +185,13 @@ Entre sus características más relevantes se encuentran \citep{TK102BMANUAL:1}:
 \item Autonomía de 80 horas o 3 días aproximadamente.
 \end{itemize}
 
+\pagebreak
 
-Se presentan a continuación las principales características de estos dos modelos, contrastadas:
+En la tabla \ref{tab:comparativa-botones} se presentan las principales características de estos dos modelos contrastadas.
 
 \begin{table}[H]
 	\centering
-	\caption[Tabla comparativa]{Tabla comparativa de los dos modelos}
+	\caption[Comparativa entre los modelos LK109 y TK102B.]{Comparativa entre los modelos LK109 y TK102B.}
 	\begin{tabular}{l c c}    
 		\toprule
 		\textbf{Característica} 	 & \textbf{LK109} & \textbf{TK102B}	  \\
@@ -202,12 +205,12 @@ Se presentan a continuación las principales características de estos dos model
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:comparativa-botones}
 \end{table}
 
-Respecto al ítem de autonomía, no se ha podido comprobar en la práctica que la duración sea la indicada (siempre es mucho menor, entre 12 y 24 horas), a excepción del uso mediante \textit{sleep} o ahorro de batería, que no tiene utilidad para las aplicaciones de seguimiento de una persona. Esto es debido a que, en el modo de ahorro de batería, la ubicación se actualiza posterior al envío de una alerta y no antes, resultando inútil la ubicación reportada.
+Respecto al ítem de autonomía, no se ha podido comprobar en la práctica que la duración sea la indicada (siempre es mucho menor, entre 12 y 24 horas), a excepción del uso mediante \textit{sleep} o ahorro de batería, que no tiene utilidad para las aplicaciones de seguimiento de una persona. Esto es debido a que en el modo de ahorro de batería, la ubicación se actualiza posterior al envío de una alerta y no antes, lo que resulta inútil para el caso de uso.
 
-En relación al ítem de escucha remota, es decir la posibilidad de escuchar lo que ocurre alrededor del dispositivo, no se ha podido verificar para varios dispositivos; de todas maneras no resulta una funcionalidad útil en la mayoría de los casos de uso. Las características que se deben cumplir y validar obligatoriamente son:
+En relación al ítem de escucha remota, es decir la posibilidad de escuchar lo que ocurre alrededor del dispositivo, no se ha podido verificar su funcionamiento para varios dispositivos; de todas maneras no resulta una funcionalidad útil en la mayoría de los casos de uso. Las características que se deben cumplir y validar obligatoriamente son:
 \begin{itemize}
 	\item Precisión al momento de obtener la ubicación.
 	\item Autonomía considerable de la batería.

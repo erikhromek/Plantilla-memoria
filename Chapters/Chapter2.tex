@@ -8,19 +8,19 @@ En este capítulo se hace una presentación de cuestiones técnicas particulares
 
 \section{Particularidades de los sistemas de botones antipánico}
 
-Es necesario, en primer lugar, hacer una introducción a las características que deben tener las soluciones de este tipo, junto con sus limitaciones y particularidades técnicas. Cualquier desarrollo de este tipo debe considerar las siguientes características para los módulos de hardware y software.
+Es necesario, en primer lugar, hacer una introducción a las características que deben tener las soluciones de este tipo, junto con sus limitaciones y particularidades técnicas. Cualquier desarrollo similar debe considerar un conjunto de características para los módulos de hardware y software que serán descritas a continuación.
 
 \subsection{Características del hardware}
 
-Los botones antipánico y dispositivos geolocalizadores suelen ser utilizados en zonas donde la cobertura de telefonía móvil es muy baja. Es decir, se cuenta con conectividad limitada para llamadas y mensajes, y prácticamente no hay cobertura para datos móviles o es de baja tasa de transferencia. La tecnología más presente es la de GPRS o 2G\citep{NPERF:1}, ya que es la red de mayor alcance, pero también la de menor ancho de banda.
+Los botones antipánico y dispositivos geolocalizadores suelen ser utilizados en zonas donde la cobertura de telefonía móvil es muy baja. Es decir, se cuenta con conectividad limitada para llamadas y mensajes, y prácticamente no hay cobertura para datos móviles o esta es de baja tasa de transferencia. La tecnología más presente es la de GPRS o 2G \citep{NPERF:1}, ya que es la red de mayor alcance, pero también la de menor ancho de banda.
 Esto impone una restricción respecto a la conectividad, por lo que la mayoría de los dispositivos tienen las siguientes características respecto al método de comunicación:
 \begin{itemize}
 	\item Comunicación vía SMS, TCP o UDP para configuración y envío de datos.
-	\item Comunicación vía protocolos personalizados\citep{PROTOCOLS:1} para reducir el \textit{overhead} de datos.
+	\item Comunicación vía protocolos personalizados \citep{PROTOCOLS:1} para reducir el \textit{overhead} de datos.
 	\item Mecanismos para almacenar datos en caso de perder conectividad.
 \end{itemize}
 
-Debido a que, dentro del alcance del trabajo se apunta a configuración y envío de mensajes de alerta, se consideró innecesario, para estas funciones, requerir otro medio adicional. No se considera apropiado usar un método de comunicación que pueda no ser fiable, como lo son los datos móviles en zonas donde la conectividad es baja.
+Debido a que dentro del alcance del trabajo se apunta a configuración y envío de mensajes de alerta se consideró innecesario para estas funciones, requerir otro medio adicional. No se estima apropiado usar un método de comunicación que pueda no ser fiable, como lo son los datos móviles en zonas donde la conectividad es baja.
 
 Por otra parte, otro punto importante respecto a estos dispositivos, es su capacidad de obtener señal aceptable tanto de GSM como GNSS en ambientes \textit{indoor} y \textit{outdoor}. Prácticamente todos los botones antipánico poseen antenas internas y sin alimentación activa, por lo que su capacidad para adquirir un nivel de señal aceptable es limitada; esto introduce varios puntos a favor y en contra:
 \begin{itemize}
@@ -34,7 +34,7 @@ Por otra parte, otro punto importante respecto a estos dispositivos, es su capac
 
 Un sistema web, al requerir estar en comunicación con un dispositivo y mostrar su información en tiempo real, debe contar, idealmente, con las siguientes características:
 \begin{itemize}
-	\item No requerir ningún software adicional para su acceso y uso más allá de un navegador web y conexión a Internet.
+	\item No necesitar ningún software adicional para su acceso y uso más allá de un navegador web y conexión a Internet.
 	\item Poder recibir mensajes de texto, es decir, tener un número telefónico virtual asociado.
 	\item Enviar actualizaciones \textit{push} al navegador del usuario en tiempo real.
 \end{itemize}
@@ -45,11 +45,11 @@ En algunos casos, también debería permitir comunicación bidireccional con los
 
 \section{Componentes de hardware utilizados}
 
+A continuación se describirán los principales componentes de hardware empleados en el desarrollo del trabajo.
+
 \subsection{Microcontrolador ESP32}
 
-
-
-Se utilizó un SoC (\textit{System on a Chip}) de la familia ESP32 de Espressif debido a que resulta una opción ideal para el desarrollo de sistemas embebidos y aplicaciones de Internet de las Cosas. Entre las características que resultaron más atractivas para su elección, se destacan\citep{ESP32:1}:
+Se utilizó un SoC (\textit{System on a Chip}) de la familia ESP32 de Espressif debido a que resulta una opción ideal para el desarrollo de sistemas embebidos y aplicaciones de Internet de las Cosas. Entre las características que resultaron más atractivas para su elección, se destacan \citep{ESP32:1}:
 \begin{itemize}
 	\item Bajo costo y disponibilidad en el mercado local.
 	\item Prestaciones muy interesantes: Wi-Fi, Bluetooth, modos de ahorro de energía, varios periféricos, entre otros.
@@ -57,20 +57,20 @@ Se utilizó un SoC (\textit{System on a Chip}) de la familia ESP32 de Espressif 
 	\item Ya utilizado en la carrera de especialización.
 \end{itemize}
 
-En la figura 2.1 puede observarse un ESP32-S (variante comercial utilizada).
+En la figura \ref{fig:esp32s} puede observarse un ESP32-WROOM-32 (variante comercial utilizada).
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{./Figures/esp32s.png}
-	\caption{Microcontrolador ESP32-S}
-	\label{fig:texmaker}
+	\caption{Placa de desarrollo ESP32-WROOM-32.}
+	\label{fig:esp32s}
 \end{figure}
 
-Se presentan en la tabla 2.1 algunas alternativas comparadas. De todas maneras, esta comparación no debe ser interpretada linealmente ya que hay placas como Ai Thinker A9G y TTGO T-Call V1.3 que poseen ya módulos integrados, pero todos fueron analizados para el trabajo.
+Se presentan en la tabla \ref{tab:comparativa-placas} algunas alternativas comparadas. De todas maneras, esta comparación no debe ser interpretada linealmente ya que hay placas como Ai Thinker A9G y TTGO T-Call V1.3 que poseen módulos integrados, pero todos fueron analizados para el trabajo.
 
 \begin{table}[h]
 	\centering
-	\caption[Tabla comparativa]{Tabla comparativa de placas de desarrollo}
+	\caption[Comparativa de placas de desarrollo.]{Comparativa de placas de desarrollo.}
 	\begin{tabular}{l c c c c}    
 		\toprule
 		\textbf{Característica} 	 & \textbf{ESP32} & \textbf{A9G} & \textbf{LoPy 4} & \textbf{TTGO T-Call}  \\
@@ -82,25 +82,25 @@ Se presentan en la tabla 2.1 algunas alternativas comparadas. De todas maneras, 
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:comparativa-placas}
 \end{table}
 
 \subsection{Módulo GPS NEO-6M}
 
-Para la implementación del módulo de posicionamiento, se decantó por el uso del módulo de GPS NEO-6M desarrollado por la compañía u-blox. Este módulo GPS posee un rango operativo de entre 2.7 V y 3.6 V, siendo muy similar al microcontrolador elegido anteriormente. Tiene modos de ahorro de energía configurables e interfaces de comunicación UART, SPI y I²C\citep{NEO6M:1}. Se analizaron otras alternativas, encontrando mucha similitudes, pero hallando mayor documentación y casos de uso por parte de la comunidad para el NEO-6M. En la figura 2.2 se puede observar una variante de fabricación del NEO-6M.
+Para la implementación del módulo de posicionamiento, se decantó por el uso del módulo de GPS NEO-6M desarrollado por la compañía u-blox. Este módulo GPS posee un rango operativo de entre 2,7 V y 3,6 V, siendo muy similar al microcontrolador elegido anteriormente. Tiene modos de ahorro de energía configurables e interfaces de comunicación UART, SPI y I²C \citep{NEO6M:1}. Se analizaron otras alternativas y se encontraron muchas similitudes, sin embargo se halló mayor cantidad de documentación y casos de uso por parte de la comunidad para el NEO-6M. En la figura \ref{fig:neo6m} se puede observar una variante de fabricación del NEO-6M.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{./Figures/neo-6m.jpg}
-	\caption{Módulo GPS NEO-6M con una antena externa}
-	\label{fig:texmaker}
+	\caption{Módulo GPS NEO-6M con una antena externa.}
+	\label{fig:neo6m}
 \end{figure}
 
-Se muestra en la tabla 2.2 una comparativa respecto a otro módulo similar.
+Se muestra en la tabla \ref{tab:comparativa-gps} una comparativa respecto a otro módulo similar.
 
 \begin{table}[h]
 	\centering
-	\caption[Tabla comparativa]{Tabla comparativa de placas de desarrollo}
+	\caption[Comparativa de módulos GPS.]{Comparativa de módulos GPS.}
 	\begin{tabular}{l c c}    
 		\toprule
 		\textbf{Característica} 	 & \textbf{Quectel L86} & \textbf{NEO-6M} \\
@@ -111,63 +111,63 @@ Se muestra en la tabla 2.2 una comparativa respecto a otro módulo similar.
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:comparativa-gps}
 \end{table}
 
 \subsection{Módulo GSM SIM800L}
 
-Para el desarrollo de la conectividad a las redes de telefonía móvil se utilizó el módulo SIM800L, un chip fabricado por la compañía Simcom. Funciona con un rango de voltaje entre 3.4 V y 4.4 V, y permite la utilización del módulo mediante comandos AT. Estas instrucciones consisten en cadenas de caracteres cortas utilizadas dentro de la industria desde la década de 1980 hasta el día de hoy para la comunicación con módulos, módems, entre otros dispositivos{\citep{AT:1}}. Posee mecanismos para optimizar el consumo de energía pero tiene picos elevados de consumo durante la trasmisión. Respecto a la compatibilidad de generaciones de tecnologías de telefonía móvil, solo soporta hasta 2G\citep{SIM800L:1}. De todas maneras, para los fines del trabajo, resultó suficiente. En la figura 2.3 se puede visualizar el módulo SIM800L con una antena helicoidal, aunque pueden utilizarse otros tipos de antenas con mayor ganancia de potencia.
+Para el desarrollo de la conectividad a las redes de telefonía móvil se utilizó el módulo SIM800L, un chip fabricado por la compañía Simcom. Funciona con un rango de voltaje entre 3,4 V y 4,4 V y permite la utilización del módulo mediante comandos AT. Estas instrucciones consisten en cadenas de caracteres cortas utilizadas dentro de la industria desde la década de 1980 hasta el día de hoy para la comunicación con módulos, módems, entre otros dispositivos \citep{AT:1}. Posee mecanismos para optimizar el consumo de energía pero tiene picos elevados de consumo durante la trasmisión. Respecto a la compatibilidad de generaciones de tecnologías de telefonía móvil, solo soporta hasta 2G \citep{SIM800L:1}. De todas maneras, para los fines del trabajo, resultó suficiente. En la figura \ref{fig:sim800l} se puede visualizar el módulo SIM800L con una antena helicoidal, aunque pueden utilizarse otros tipos de antenas con mayor ganancia de potencia.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{./Figures/sim800l.jpg}
-	\caption{Módulo SIM800L}
-	\label{fig:texmaker}
+	\caption{Módulo SIM800L.}
+	\label{fig:sim800l}
 \end{figure}
 
 \subsection{Batería 18650 y chip cargador TP4056}
 
-
-
-Para la alimentación del microcontrolador y sus módulos, se decidió utilizar una batería recargable del tipo 18650 de Li-ion de 2600 mAh. Este tipo de baterías tiene la ventaja de trabajar con un rango de voltaje apropiado para microcontroladores y módulos, pudiendo además tener una elevada corriente máxima de descarga (hasta 2 A aproximadamente). En la figura 2.4 se puede apreciar el formato de estas, muy similar al de las pilas domésticas. Debido a que requieren un circuito integrado para la alimentación y el control ante sobrecargas, se utilizó un módulo Tp4056 que permite utilizar una entrada micro USB de 5 V, lo cual posibilita, por ejemplo, el uso de un cargador común de teléfono celular. Este circuito se puede visualizar en la figura 2.5.
+Para la alimentación del microcontrolador y sus módulos, se decidió utilizar una batería recargable del tipo 18650 de Li-ion de 2600 mAh. Este tipo de baterías tiene la ventaja de trabajar con un rango de voltaje apropiado para microcontroladores y módulos, pudiendo además tener una elevada corriente máxima de descarga (hasta 2 A aproximadamente). En la figura \ref{fig:bateria-18650} se puede apreciar el formato de estas, muy similar al de las pilas domésticas. Debido a que requieren un circuito integrado para la alimentación y el control ante sobrecargas, se utilizó un módulo Tp4056 que permite utilizar una entrada micro USB de 5 V, lo cual posibilita, por ejemplo, el uso de un cargador común de teléfono celular. Este circuito se puede visualizar en la figura \ref{fig:circuito-mp4056}.
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{./Figures/18650.jpg}
-  \captionof{figure}{Batería 18650}
-  \label{fig:test1}
+  \captionof{figure}{Batería 18650.}
+  \label{fig:bateria-18650}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{./Figures/tp4056.jpg}
-  \captionof{figure}{Circuito Mp4056}
-  \label{fig:test2}
+  \captionof{figure}{Circuito Mp4056.}
+  \label{fig:circuito-mp4056}
 \end{minipage}
 \end{figure}
 
 \section{Componentes de software utilizados}
 
+Se describirán a continuación las tecnologías de software usadas en el desarrollo del trabajo.
+
 \subsection{Django REST framework}
 
-Django REST framework es un conjunto de bibliotecas y herramientas del lenguaje Python para el desarrollo de aplicaciones web y APIs REST. Es el framework \textit{de facto} para el desarrollo web en Python. Entre sus características más interesantes, se encuentran\citep{DJANGO:1}:
+Django REST framework es un conjunto de bibliotecas y herramientas del lenguaje Python para el desarrollo de aplicaciones web y APIs REST. Es el framework \textit{de facto} para el desarrollo web en Python. Entre sus características más interesantes, se encuentran \citep{DJANGO:1}:
 \begin{itemize}
-	\item Soporte incluído para serialización de datos.
+	\item Soporte incluido para serialización de datos.
 	\item Código modular y reusable mediante \textit{views} y \textit{viewsets}, que son clases de objetos para el armado de interfaces REST sobre el modelo de datos.
 	\item Mapeo de bases de datos relacionados a objetos mediante un \textit{Object–relational mapping} (ORM) propio.
 	\item Documentación automática para las API por defecto.
 	\item Estable desde hace más de una década.
-	\item Combina la rapidez para la codificación y flexibilidad de un lenguaje de tipado dinámico junto a un conjunto de características y estructuras para escalar el desarrollo y que siga siendo mantenible.
-	\item Soporte para múltiples mecanismos de autenticación ya incluídos.
+	\item Combina la rapidez para la codificación y la flexibilidad de un lenguaje de tipado dinámico junto a un conjunto de características y estructuras para escalar el desarrollo y que siga siendo mantenible.
+	\item Soporte para múltiples mecanismos de autenticación ya incluidos.
 	\item Bajo uso de recursos.
 \end{itemize}
 
-En la tabla 2.3 se puede ver una comparativa con uno de los frameworks web más utilizados de la actualidad\citep{EXPRESS:1}, Express. Se elegió Django para el desarrollo de la API de la aplicación porque se deseó trabajar con un lenguaje como Python, pero con un framework fuertemente estructurado.
+En la tabla \ref{tab:comparativa-backend} se puede ver una comparativa con uno de los frameworks web más utilizados de la actualidad \citep{EXPRESS:1}, Express. Se elegió Django para el desarrollo de la API de la aplicación porque se deseó trabajar con un lenguaje como Python, pero con un framework fuertemente estructurado.
 
 \begin{table}[H]
 	\centering
-	\caption[Tabla comparativa]{Tabla comparativa de frameworks web}
+	\caption[Comparativa de frameworks web.]{Comparativa de frameworks web.}
 	\begin{tabular}{l c c}    
 		\toprule
 		\textbf{Característica} 	 & \textbf{Django} & \textbf{Express} \\
@@ -181,12 +181,12 @@ En la tabla 2.3 se puede ver una comparativa con uno de los frameworks web más 
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:comparativa-backend}
 \end{table}
 
 \subsection{Angular}
 
-Angular es un framework de código abierto desarrollado originalmente por Google para la construcción de aplicaciones web del tipo SPA\citep{ANGULAR:1}. Utiliza el lenguaje Typescript que es un \textit{superset} de Javascript, dotándolo de tipado estático y características no presentes en Javascript. Entre sus características más potentes se pueden destacar\citep{ANGULAR:2}:
+Angular es un framework de código abierto desarrollado originalmente por Google para la construcción de aplicaciones web del tipo SPA \citep{ANGULAR:1}. Utiliza el lenguaje Typescript que es un \textit{superset} de Javascript, dotándolo de tipado estático y características no presentes en este último. Entre sus características más potentes se pueden destacar \citep{ANGULAR:2}:
 \begin{itemize}
 	\item Framework completo con una estructura definida.
 	\item Arquitectura orientada en componentes.
@@ -194,22 +194,22 @@ Angular es un framework de código abierto desarrollado originalmente por Google
 	\item Disponibilidad de muchas bibliotecas y herramientas.
 \end{itemize}
 
-Para el desarrollo de las interfaces de usuario, se planteó el uso de \textit{Angular Material}, que es una biblioteca de componentes de interfaces disponible para Angular. Su principal ventaja es la disponibilidad de componentes estándar ya armados y diseño común\citep{ANGULAR:3}.
+Para el desarrollo de las interfaces de usuario, se planteó el uso de \textit{Angular Material}, que es una biblioteca de componentes de interfaces disponible para Angular. Su principal ventaja es la disponibilidad de componentes estándar ya armados y diseño común \citep{ANGULAR:3}.
 
-Para la incorporación de mapas en la aplicación, se definió el uso de Leaftlet, una biblioteca para el desarrollo de mapas en aplicaciones web. Su incorporación a Angular puede hacerse mediante el paquete \textit{ngx-leaftlet}\citep{LEAFLET:1} junto con el proveedor gratuito y \textit{open source} de mapas OpenStreetMap.
+Para la incorporación de mapas en la aplicación, se definió el uso de Leaftlet, una biblioteca para el desarrollo de mapas en aplicaciones web. Su incorporación a Angular puede hacerse mediante el paquete \textit{ngx-leaftlet} \citep{LEAFLET:1} junto con el proveedor gratuito y \textit{open source} de mapas OpenStreetMap.
 
 \subsection{PostgreSQL}
 
-PostgreSQL es un \textit{relational database management system} o RDBMS de código abierto que hace uso de SQL y es famoso por ser \textit{ACID-compliant}, su gran amplitud de tipos de datos, robustez y extensibilidad\citep{POSTGRES:1}. Es utilizado ampliamente por la industria del software\citep{POSTGRES:2} y se encuentra disponible como una opción por los mayores proveedores de \textit{cloud} de la actualidad. Prácticamente todos los frameworks web permiten conectarse a este motor de bases de datos. 
+PostgreSQL es un \textit{relational database management system} o RDBMS de código abierto que hace uso de SQL y es famoso por ser \textit{ACID-compliant}, su gran amplitud de tipos de datos, robustez y extensibilidad \citep{POSTGRES:1}. Es utilizado ampliamente por la industria del software \citep{POSTGRES:2} y se encuentra disponible como una opción por los mayores proveedores de \textit{cloud} de la actualidad. Prácticamente todos los frameworks web permiten conectarse a este motor de bases de datos. 
 
 \subsection{Heroku}
 
-Heroku es un proveedor de infraestructura y servicios en la nube y \textit{Platform as a Service} (PaaS) focalizado en el rápido despliegue y mantenimiento de las aplicaciones web. La principal ventaja de Heroku es que apunta a abstraer al usuario de detalles técnicos y la infraestructura que da soporte a los servicios usados. Se presenta en la tabla 2.4 una comparativa frente a otros proveedores, como Amazon Web Services (AWS) y Google Cloud Platform (GCP).
+Heroku es un proveedor de infraestructura y servicios en la nube y \textit{Platform as a Service} (PaaS) focalizado en el rápido despliegue y mantenimiento de las aplicaciones web. La principal ventaja de Heroku es que apunta a abstraer al usuario de detalles técnicos y la infraestructura que da soporte a los servicios usados. Se presenta en la tabla \ref{tab:comparativa-cloud} una comparativa frente a otros proveedores, como Amazon Web Services (AWS) y Google Cloud Platform (GCP).
 
 
 \begin{table}[H]
 	\centering
-	\caption[Tabla comparativa]{Tabla comparativa de proveedores \textit{cloud}\citep{CLOUD:1}\citep{CLOUD:2}\citep{CLOUD:3}}
+	\caption[Comparativa de proveedores \textit{cloud}.]{Comparativa de proveedores \textit{cloud} \citep{CLOUD:1}\citep{CLOUD:2}\citep{CLOUD:3}.}
 	\begin{tabular}{l c c c}    
 		\toprule
 		\textbf{Característica} 	 & \textbf{Heroku} & \textbf{AWS} & \textbf{GCP} \\
@@ -222,14 +222,16 @@ Heroku es un proveedor de infraestructura y servicios en la nube y \textit{Platf
 		\bottomrule
 		\hline
 	\end{tabular}
-	\label{tab:peces}
+	\label{tab:comparativa-cloud}
 \end{table}
 
 \section{Herramientas y servicios de software utilizados}
 
+A continuación se describirán las principales herramientas y servicios de software usados en el desarrollo del trabajo.
+
 \subsection{Docker}
 
-Docker es una plataforma \textit{open source} para la contenerización de aplicaciones, con el objetivo de\citep{DOCKER:1}:
+Docker es una plataforma \textit{open source} para la contenerización de aplicaciones, con el objetivo de \citep{DOCKER:1}:
 \begin{itemize}
 	\item Generar versiones de sistemas idénticas entre diferentes ambientes, es decir que un sistema sea portable.
 	\item Aislar los recursos del \textit{host} de los sistemas que corren en él.
@@ -240,33 +242,33 @@ Docker permite generar imágenes de sistemas siguiendo un conjunto de instruccio
 
 \subsection{Visual Studio Code}
 
-\textit{Visual Studio Code} es un editor de texto e IDE (Integrated development environment o Entorno de desarrollo integrado) de código abierto desarrollado originalmente por Microsoft\citep{VSCODE:1}. Su flexibilidad y soporte para una cantidad considerable de extensiones para gran parte de los lenguajes y frameworks de la industria lo posicionaron en la última década como uno de los IDE más utilizados.
+\textit{Visual Studio Code} es un editor de texto e IDE (\textit{Integrated development environment} o Entorno de desarrollo integrado) de código abierto desarrollado originalmente por Microsoft \citep{VSCODE:1}. Su flexibilidad y soporte para una cantidad considerable de extensiones para gran parte de los lenguajes y frameworks de la industria lo posicionaron en la última década como uno de los IDE más utilizados.
 
-Permite desarrollar aplicaciones con Python, Javascript/Typescript, incorporando incluso frameworks para el desarrollo de embebidos como es el caso de ESP-IDF\citep{ESPIDF:1} o PlatformIO\citep{PLATFORMIO:1}. La mayoría de proveedores de servicios en la nube han desarrollado extensiones para agilizar el despliegue de aplicaciones en sus servicios.
+Permite desarrollar aplicaciones con Python, Javascript/Typescript, incorporando incluso frameworks para el desarrollo de embebidos como es el caso de ESP-IDF \citep{ESPIDF:1} o PlatformIO \citep{PLATFORMIO:1}. La mayoría de proveedores de servicios en la nube han desarrollado extensiones para agilizar el despliegue de aplicaciones en sus servicios.
 
 \subsection{PyGPSClient}
 
-PyGPSClient es una herramienta de escritorio desarrollada en Python para el \textit{debugging} y análisis de varios módulos GNSS de u-blox. Su principal ventaja frente a la herramienta estándar para las pruebas de estos módulos, u-center, es que está disponible para cualquier sistema que soporte Python, en comparación con la anterior que solo se encuentra para Windows\citep{PYGPSCLIENT:1}. En la figura 2.6 es posible observar la aplicación en ejecución, mostrando los mensajes recibidos por el módulo GPS directamente en una terminal y la ubicación geolocalizada del módulo.
+PyGPSClient es una herramienta de escritorio desarrollada en Python para el \textit{debugging} y análisis de varios módulos GNSS de u-blox. Su principal ventaja frente a la herramienta estándar para las pruebas de estos módulos, u-center, es que está disponible para cualquier sistema que soporte Python, en comparación con la anterior que solo se encuentra para Windows \citep{PYGPSCLIENT:1}. En la figura \ref{fig:pygpsclient} es posible observar la aplicación en ejecución, mostrando los mensajes recibidos por el módulo GPS directamente en una terminal y la ubicación geolocalizada del módulo.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{./Figures/pygpsclient.png}
-	\caption{Aplicación PyGPSClient}
-	\label{fig:texmaker}
+	\caption{Aplicación PyGPSClient.}
+	\label{fig:pygpsclient}
 \end{figure}
 
 \subsection{Moserial}
 
-Moserial es una aplicación de escritorio orientada al \textit{testing} de dispositivos embebidos, consolas y equipos electrónicos que permiten comunicación vía \textit{Universal Asynchronous Receiver-Transmitter} o UART. Se encuentra disponible para el entorno gráfico GNOME, popular en sistemas GNU/Linux. En la figura 2.7 se muestra su uso, donde se pueden apreciar los datos recibidos vía comunicación serial. Resultó de importancia para la comunicación con el módulo de GSM, SIM800L.
+Moserial es una aplicación de escritorio orientada al \textit{testing} de dispositivos embebidos, consolas y equipos electrónicos que permiten comunicación vía \textit{Universal Asynchronous Receiver-Transmitter} o UART. Se encuentra disponible para el entorno gráfico GNOME, popular en sistemas GNU/Linux. En la figura \ref{fig:moserial} se muestra su uso, donde se pueden apreciar los datos recibidos vía comunicación serial. Resultó de importancia para la comunicación con el módulo de GSM, SIM800L.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{./Figures/moserial.png}
-	\caption{Aplicación Moserial}
-	\label{fig:texmaker}
+	\caption{Aplicación Moserial.}
+	\label{fig:moserial}
 \end{figure}
 
 
 \subsection{Twilio}
 
-Twilio es un \textit{Communications Platform as a Service} o CPaSS que ofrece diferentes servicios para el desarrollo de sistemas que requieran funcionalidades relacionadas a telefonía IP\citep{TWILIO:1}. Dentro del trabajo, su principal uso fue para la adquisición de un número de teléfono virtual para la recepción de mensajes de texto provinientes de un dispositivo embebido. Permite acceder a sus servicios mediante varios mecanismos ofrecidos por la plataforma, como APIs web.
+Twilio es un \textit{Communications Platform as a Service} o CPaSS que ofrece diferentes servicios para el desarrollo de sistemas que requieran funcionalidades relacionadas a telefonía IP \citep{TWILIO:1}. Dentro del trabajo, su principal uso fue para la adquisición de un número de teléfono virtual para la recepción de mensajes de texto provinientes de un dispositivo embebido. Permite acceder a sus servicios mediante varios mecanismos ofrecidos por la plataforma, como APIs web.
