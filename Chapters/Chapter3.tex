@@ -1,4 +1,4 @@
-\textit{\chapter{Diseño e implementación}} % Main chapter title
+\chapter{Diseño e implementación} % Main chapter title
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -87,28 +87,17 @@ Estas dos bibliotecas fueron importadas al proyecto como \textit{managed compone
 		\toprule
 		\textbf{Bibilioteca} & \textbf{Uso} \\
 		\midrule
-		\makecell[l]{\textit{iot\_button.h}} & \makecell{Implementación del botón pulsador y acciones \\ a tomar al momento de ser usado. } 	\\
-		\hline
+		\makecell[l]{\textit{iot\_button.h}} & \makecell{Implementación del botón pulsador y acciones \\ a tomar al momento de ser usado. }     \\
 		\makecell[l]{\textit{nmea.h}}	 & \makecell{Lectura de mensajes NMEA recibidos por el módulo \\ GPS.} 	\\		
-		\hline
 		\makecell[l]{\textit{string.c}}  & \makecell{Manipulación y transformación de cadenas de texto \\ al momento de leer mensajes recibidos de los módulos.}  \\
-		\hline	
 		\makecell[l]{\textit{ctype.c}}  & \makecell{Uso de funciones comunes de C \\ para trabajar sobre caracteres de texto. }  \\
-		\hline
 		\makecell[l]{\textit{uart.h}}	 & \makecell{Comunicación con los módulos GSM y GPS \\ mediante puerto serie.}	\\
-		\hline	
 		\makecell[l]{\textit{esp\_system.h}} &  Funciones básicas del ESP-IDF.\\
-		\hline
 		\makecell[l]{\textit{esp\_log.h}} &  \makecell{Visualización de errores y mensajes de \textit{debug} \\ del firmware.} \\
-		\hline
 		\makecell[l]{\textit{esp\_pm.h} \\ \textit{esp\_sleep.h}} & Configuraciones de ahorro de energía. \\
-		\hline
 		\makecell[l]{\textit{adc\_oneshot.h} \\ \textit{adc/adc\_cali.h} \\ \textit{adc\_cali\_scheme.h}}  & \makecell{Conversión analógico-digital y lectura de \\ valores para calcular la carga de la batería.} \\
-		\hline
 		\makecell[l]{\textit{nvs.h} \\ \textit{nvs\_flash.h}} &  \makecell{Manejo del almacenamiento \textit{flash} para \\ guardar datos en la memoria no volátil.} \\
-		\hline
 		\makecell[l]{\textit{freertos/FreeRTOS.h}} & \makecell{Configuración del sistema operativo en tiempo real  \\ del ESP32.} \\
-		\hline
 		\makecell[l]{\textit{freertos/task.h}} & Implementación de funciones como procesos/tareas. \\
 		
 		\bottomrule
@@ -221,7 +210,7 @@ Se aplicaron diferentes técnicas de optimización sobre el ESP32 y los módulos
 \begin{itemize}
 	\item Se configuró \textit{FreeRTOS} para solamente utilizar un núcleo del ESP32.
 	\item Se limitó la frecuencia del procesador para solamente utilizar como máximo 80 MHz.
-	\item Se desactivaron todos los periféricos no usados, como WiFi, Bluetooth, etc.
+	\item Se desactivaron todos los periféricos no usados, como Wi-Fi, Bluetooth, etc.
 	\item Se configuró el \textit{Dynamic frequency scaling} o DFS del ESP32, que permite que se reduzca la velocidad del reloj del procesador de forma automática en determinadas condiciones \citep{ESP32:2}.
 	\item Se configuró el modo \textit{sleep} del módulo SIM800L, desactivándolo solo cuando se le deben enviar comandos.
 	\item Se desactivó el LED de notificación de calidad de señal del módulo SIM800L, ya que la comprobación se realiza de forma programática.
@@ -270,23 +259,14 @@ Para la implementación se incorporaron varias bibliotecas externas, cuya utilid
 		\textbf{Bibilioteca} & \textbf{Uso} \\
 		\midrule
 		\makecell[l]{\textit{djangorestframework}}	 & \makecell{Biblioteca de Django para el \\ desarrollo de APIs REST.} 	\\		
-		\hline
-		\makecell[l]{\textit{psycopg}}  & \makecell{Biblioteca para conexión a \\ PostgreSQL \citep{DJANGO:4}.}  \\
-		\hline	
+		\makecell[l]{\textit{psycopg}}  & \makecell{Biblioteca para conexión a \\ PostgreSQL \citep{DJANGO:4}.}  \\	
 		\makecell[l]{\textit{django-twilio}}  & \makecell{Biblioteca oficial \citep{DJANGO:3} de Twilio para \\ comunicación con \textit{Twilio Messaging Services}. }  \\
-		\hline
 		\makecell[l]{\textit{channels}}	 & \makecell{Biblioteca para la implementación de \\ WebSockets en Django \citep{DJANGO:5}.}	\\
-		\hline	
 		\makecell[l]{\textit{djangorestframework-simplejwt}} &  \makecell{Biblioteca para el \textit{middleware} de \\ autenticación de usuarios.} \\
-		\hline
 		\makecell[l]{\textit{drf\_yasg}} &  \makecell{Biblioteca para generar documentación \\ de API en Swagger.} \\
-		\hline
 		\makecell[l]{\textit{uvicorn}} & Servidor web ASGI para Python \citep{DJANGO:7}. \\
-		\hline
 		\makecell[l]{\textit{django-cors-headers}}  & \makecell{\textit{Middleware} de seguridad para peticiones \\ de la API.} \\
-		\hline
 		\makecell[l]{\textit{dj-database-url}} &  \makecell{Biblioteca para conectarse a base de datos \\ PostgreSQL de Heroku.} \\
-		\hline
 		\makecell[l]{\textit{django-channels-jwt}} & \makecell{\textit{Middleware} para autenticación \\ de WebSockets.} \\
 		\bottomrule
 		\hline
@@ -406,28 +386,23 @@ A continuación, se muestran en la tabla \ref{tab:endpoints} los servicios imple
 		GET /alert-types/{id}/ & Obtener un tipo de alerta \\
 		PUT /alert-types/{id}/ & Editar un tipo de alerta		\\
 		DELETE /alert-types/{id}/ & Eliminar un tipo de alerta  \\
-		\hline
 		GET /alerts/ & Obtener alertas  \\		
 		GET /alerts-summary/ & Obtener alertas de las últimas 24 horas \\		
 		GET /alerts/{id}/ & Obtener una alerta \\
 		PUT /alerts/{id}/ & Editar una alerta		\\
 		PATCH /alerts/{id}/ & Editar parcialmente una alerta   \\
-		\hline
 		GET /beneficiaries/ & Obtener beneficiarios  \\			
 		GET /beneficiaries/{id}/ & Obtener un beneficiario \\
 		PUT /beneficiaries/{id}/ & Editar un beneficiario		\\
 		PATCH /beneficiaries/{id}/ & Editar parcialmente un beneficiario   \\
 		DELETE /beneficiaries/{id}/ & Desactivar un beneficiario \\
-		\hline
 		GET /beneficiary-types/ & Obtener tipos de beneficiarios  \\			
 		GET /beneficiary-types/{id}/ & Obtener un tipo de beneficiario \\
 		PUT /beneficiary-types/{id}/ & Editar un tipo de beneficiario		\\
 		DELETE /beneficiary-types/{id}/ & Desactivar un beneficiario \\
-		\hline
 		POST /users/admin/ & \makecell{Crear un usuario administrador}  \\			
 		GET /user-details/ & Obtener datos del usuario \\
 		PATCH /user/{id}/ & Editar parcialmente un usuario \\
-		\hline
 		POST /login/ & Realizar login programático \\	
 		GET /ws-auth/ & \makecell{Obtener token efímero para  conexión \\ a WebSockets} \\
 		POST /twilio-webhook/ & \makecell{Webhook para notificar una  alerta \\ desde Twilio} \\	
@@ -562,19 +537,12 @@ En la tabla \ref{tab:frontend-libraries} se listan las principales bibliotecas i
 		\textbf{Biblioteca} & \textbf{Descripción} \\
 		\midrule
 		\textit{\makecell[l]{leaflet \\ @asymmetrik/ngx-leaflet}} & \makecell{Implementación del mapa de alertas y \\ funcionalidad asociada a este.}  \\
-		\hline
 		\textit{\makecell[l]{rxjs}} & \makecell{ Implementación de métodos asíncronos para \\ gestión de eventos. }  \\
-		\hline
 		\textit{\makecell[l]{@ngrx}} & \makecell{ Implementación de manejo de estado y datos. }	\\
-		\hline
 		\textit{\makecell[l]{@ngrx/operators \\ @ngrx/signals}} & \makecell{Importación de operadores de \textit{NgRx} para el \\ manejo de estado.}  \\
-		\hline
 		\textit{\makecell[l]{backoff-rxjs}} & \makecell{Implementación de reconexión en  \textit{WebSockets} \\ ante errores. } \\
-		\hline
 		\textit{\makecell[l]{camelcase-keys \\ snakecase-keys}} & \makecell{ Conversión de formato de datos enviados entre \\ \textit{backend} y \textit{frontend}. }	\\
-		\hline
 		\textit{\makecell[l]{express}} & \makecell{Implementación de servidor  para servir el \\ \textit{frontend}.}  \\
-		\hline
 		\textit{\makecell[l]{mat-table-exporter}} & Funciones de exportación de tablas.  \\
 		\bottomrule
 		\hline
